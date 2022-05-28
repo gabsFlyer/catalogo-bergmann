@@ -1,4 +1,7 @@
-<h1>hello world</h1>
-<div *ngIf="userLogged">Usuário logado</div>
+<span *ngIf="userLogged">Usuário logado</span>
+<span *ngIf="!userLogged" (click)="login()">logar</span>
+<span *ngIf="userLogged" (click)="logout()"> - sair</span>
 
-<span (click)="logout()">sair</span>
+<br>
+
+<router-outlet></router-outlet>
