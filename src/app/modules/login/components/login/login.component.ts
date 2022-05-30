@@ -10,6 +10,9 @@ export class LoginComponent implements OnInit {
 
   signIn: boolean = true;
 
+  userMail: string = '';
+  userPassword: string = '';
+
   constructor(
     private router: Router
   ) { }
@@ -19,6 +22,11 @@ export class LoginComponent implements OnInit {
 
   goToRegister() {
     this.router.navigate(['register']);
+  }
+
+  login() {
+    console.log('userMail', this.userMail)
+    console.log('userPassword', this.userPassword)
   }
 
 }
