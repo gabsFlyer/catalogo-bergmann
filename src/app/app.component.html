@@ -1,7 +1,10 @@
-<span *ngIf="userLogged">Usuário logado</span>
-<span *ngIf="!userLogged" (click)="login()">logar</span>
-<span *ngIf="userLogged" (click)="logout()"> - sair</span>
+<main style="overflow: hidden">
 
-<br>
+  <ng-container *ngIf="userLogged">
+    <span>Aqui tem um menu</span>
+    <span (click)="logout()"> - sair</span>
+    <br>
+  </ng-container>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</main>

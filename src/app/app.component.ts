@@ -18,11 +18,6 @@ export class AppComponent implements OnInit {
     this.userLogged = this.authenticationService.userLogged();
   }
 
-  login(): void  {
-    this.authenticationService.setToken('12345');
-    this.userLogged = this.authenticationService.userLogged();
-  }
-
   logout(): void {
     this.authenticationService.clearToken();
     this.userLogged = this.authenticationService.userLogged();

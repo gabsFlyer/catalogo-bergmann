@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './modules/dashboard/components/dashboard/dashboard.component';
 import { FlyerComponent } from './modules/flyer/components/flyer/flyer.component';
 import { LoginComponent } from './modules/login/components/login/login.component';
+import { RegisterComponent } from './modules/login/components/register/register.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: 'login',
     pathMatch: 'full',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    pathMatch: 'full',
+    component: RegisterComponent
   },
   {
     path: 'dashboard',
