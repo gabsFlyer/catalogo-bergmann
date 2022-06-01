@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IAccessToken } from 'src/app/shared/interfaces/access-token.interface';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
   userPassword: string = '';
 
   constructor(
-    private router: Router
+    private auth: AuthenticationService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -25,8 +28,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('userMail', this.userMail)
-    console.log('userPassword', this.userPassword)
+    this.auth.signIn(this.userMail, this.userPassword)
+      .subscribe((accessToken: IAccessToken) => {
+        this.auth.setToken(accessToken.access_token);
+
+        this.router.navigate(['dashboard']);
+      });
   }
 
 }
