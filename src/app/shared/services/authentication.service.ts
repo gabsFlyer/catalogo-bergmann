@@ -1,5 +1,5 @@
 import { IAccessToken } from './../interfaces/access-token.interface';
-import { map, Observable } from 'rxjs';
+import { map, Observable, ReplaySubject } from 'rxjs';
 import { SignInModel } from './../models/sign-in.model';
 import { environment } from './../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,6 +11,9 @@ import { apiEndpoints } from '../constants/api-endpoints.constant';
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  private logged = new ReplaySubject<boolean>(1);
+  isLogged = this.logged.asObservable();
 
   constructor(
     private http: HttpClient
@@ -31,7 +34,8 @@ export class AuthenticationService {
   }
 
   logout() {
-
+    this.clearToken();
+    this.checkStatus();
   }
 
   userLogged() : boolean {
@@ -44,9 +48,18 @@ export class AuthenticationService {
 
   setToken(token: string) {
     sessionStorage.setItem(environment.sessionStorage.userToken, token);
+    this.logged.next(true);
   }
 
   clearToken() {
     sessionStorage.removeItem(environment.sessionStorage.userToken);
+  }
+
+  checkStatus() {
+    if (this.getToken()) {
+      this.logged.next(true);
+    } else {
+      this.logged.next(false);
+    }
   }
 }
