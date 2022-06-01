@@ -1,0 +1,29 @@
+<div class="full-body d-flex justify-content-center align-items-center">
+  <div class="card shadow border rounded p-5" style="width: 25rem;">
+    <div class="d-flex justify-content-center pb-5">
+      <h1>gabsFlyer</h1>
+    </div>
+
+    <div class="form-group">
+      <label for="userMail" class="form-label">Email</label>
+      <input id="userMail" type="email" class="form-control" [(ngModel)]="userMail">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="userPassword" class="form-label">Senha</label>
+      <input id="userPassword" type="password" class="form-control" [(ngModel)]="userPassword">
+    </div>
+
+    <div class="d-flex flex-column">
+      <button class="btn btn-primary m-4" (click)="login()">Entrar</button>
+
+      <div class="d-flex justify-content-center">
+        <span role="button">Esqueci a senha</span>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <span role="button" (click)="goToRegister()">Não tenho uma conta</span>
+      </div>
+    </div>
+  </div>
+</div>
