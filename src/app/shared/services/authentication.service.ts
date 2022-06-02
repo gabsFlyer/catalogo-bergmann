@@ -1,3 +1,4 @@
+import { User } from './../models/user.model';
 import { IAccessToken } from './../interfaces/access-token.interface';
 import { map, Observable, ReplaySubject } from 'rxjs';
 import { SignInModel } from './../models/sign-in.model';
@@ -29,8 +30,12 @@ export class AuthenticationService {
       .pipe(map(res => res as IAccessToken));
   }
 
-  signUp() {
+  signUp(user: User) {
+    const url = apiEndpoints.auth.signUp;
 
+    return this.http
+      .post(url, user)
+      .pipe(map(res => res as IAccessToken));
   }
 
   logout() {

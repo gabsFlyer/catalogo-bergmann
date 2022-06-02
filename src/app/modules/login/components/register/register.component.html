@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="full-body d-flex justify-content-center align-items-center">
+  <div class="card shadow border rounded p-5" style="width: 25rem;">
+    <div class="d-flex justify-content-center pb-5">
+      <h1>gabsFlyer</h1>
+    </div>
+
+    <div class="form-group">
+      <label for="name" class="form-label">Nome</label>
+      <input id="name" type="text" class="form-control" [(ngModel)]="user.name">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="mail" class="form-label">Email</label>
+      <input id="mail" type="email" class="form-control" [(ngModel)]="user.email">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="phone" class="form-label">Telefone</label>
+      <input id="phone" type="text" class="form-control" mask="(00) 00000-0000" [(ngModel)]="user.phone">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="password" class="form-label">Senha</label>
+      <input id="password" type="password" class="form-control" [(ngModel)]="user.password">
+    </div>
+
+    <div class="d-flex flex-column">
+      <button class="btn btn-primary m-4" (click)="register()">Registrar</button>
+
+      <div class="d-flex justify-content-center">
+        <span role="button" (click)="goToLogin()">Já tem uma conta? Entrar</span>
+      </div>
+    </div>
+  </div>
+</div>
