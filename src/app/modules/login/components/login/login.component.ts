@@ -10,8 +10,6 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class LoginComponent implements OnInit {
 
-  signIn: boolean = true;
-
   userMail: string = '';
   userPassword: string = '';
 
@@ -21,6 +19,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.auth.isLogged.subscribe((logged: boolean) => {
+      this.router.navigate(['dashboard']);
+    });
+
+    this.auth.checkStatus();
   }
 
   goToRegister() {
