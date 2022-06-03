@@ -1,7 +1,7 @@
 <main style="overflow: hidden">
 
-  <ng-container *ngIf="userLogged">
-    <app-navbar></app-navbar>
+  <ng-container *ngIf="userIsLogged">
+    <app-navbar [navbarOptions]="navbarOptions"></app-navbar>
   </ng-container>
 
   <router-outlet></router-outlet>

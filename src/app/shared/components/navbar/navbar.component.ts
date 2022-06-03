@@ -1,5 +1,5 @@
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-import { Component, OnInit } from '@angular/core';
+import { INavbarOption } from './../../interfaces/navbar-option.interface';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,19 +7,16 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
+
+  @Input() navbarOptions: Array<INavbarOption> = new Array();
 
   constructor(
-    private auth: AuthenticationService,
     private router: Router,
   ) { }
 
-  ngOnInit(): void {
-  }
-
-  logout() {
-    this.auth.logout();
-    this.router.navigate(['login']);
+  navbarClick(option: INavbarOption): void {
+    this.router.navigate([option.route]);
   }
 
 }
