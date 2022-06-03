@@ -1,6 +1,4 @@
-import { INavbarOption } from '../../interfaces/navbar-option.interface';
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-navbar-dashboard',
