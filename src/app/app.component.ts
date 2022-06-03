@@ -1,37 +1,40 @@
+import { User } from './shared/models/user.model';
 import { Router } from '@angular/router';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { INavbarOption } from './shared/interfaces/navbar-option.interface';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './shared/services/authentication.service';
-import { ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit {
   title: string = 'Catálogo';
-  userLogged: boolean = false;
+  userIsLogged: boolean = false;
+  userIsAdmin: boolean = false;
+
+  // navbarOptions: Array<INavbarOption> = new Array();
+
 
   constructor (
     private auth: AuthenticationService,
-    private router: Router,
   ) {  }
 
   ngOnInit(): void {
     this.auth.isLogged.subscribe((logged: boolean) => {
-      this.userLogged = logged;
+      this.userIsLogged = logged;
+      if (this.userIsLogged) {
+        this.checkIfUserIsAdmin();
+      }
     });
     this.auth.checkStatus();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('passou aqui')
-    // this.userLogged = this.authenticationService.userLogged();
-  }
-
-  logout(): void {
-    this.auth.logout();
-
-    this.router.navigate(['login']);
+  checkIfUserIsAdmin() {
+    this.auth.getUser()
+    .subscribe((user: User) => {
+      this.userIsAdmin = user.hierarchy > 1;
+    });
   }
 }

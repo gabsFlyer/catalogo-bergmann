@@ -6,5 +6,6 @@ export const apiEndpoints = {
   auth: {
     signIn: `${baseUrl}/auth/signIn`,
     signUp: `${baseUrl}/auth/signUp`,
+    me: `${baseUrl}/auth/me`,
   },
 }

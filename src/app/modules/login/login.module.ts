@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -16,6 +17,7 @@ const maskConfig: Partial<IConfig> = {
   declarations: [
     LoginComponent,
     RegisterComponent,
+    LogoutComponent,
   ],
   imports: [
     NgxMaskModule.forRoot(maskConfig),
@@ -28,6 +30,7 @@ const maskConfig: Partial<IConfig> = {
   exports: [
     LoginComponent,
     RegisterComponent,
+    LogoutComponent,
   ]
 })
 export class LoginModule { }

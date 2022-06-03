@@ -1,9 +1,7 @@
 <main style="overflow: hidden">
 
-  <ng-container *ngIf="userLogged">
-    <span>Aqui tem um menu</span>
-    <span (click)="logout()"> - sair</span>
-    <br>
+  <ng-container *ngIf="userIsLogged">
+    <app-navbar-dashboard *ngIf="userIsAdmin"></app-navbar-dashboard>
   </ng-container>
 
   <router-outlet></router-outlet>
