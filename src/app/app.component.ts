@@ -12,41 +12,29 @@ import { AuthenticationService } from './shared/services/authentication.service'
 export class AppComponent implements OnInit {
   title: string = 'Catálogo';
   userIsLogged: boolean = false;
+  userIsAdmin: boolean = false;
 
-  navbarOptions: Array<INavbarOption> = new Array();
+  // navbarOptions: Array<INavbarOption> = new Array();
 
 
   constructor (
     private auth: AuthenticationService,
-    private router: Router,
   ) {  }
 
   ngOnInit(): void {
     this.auth.isLogged.subscribe((logged: boolean) => {
       this.userIsLogged = logged;
       if (this.userIsLogged) {
-        this.getNavbarOptions();
+        this.checkIfUserIsAdmin();
       }
     });
     this.auth.checkStatus();
   }
 
-  getNavbarOptions() {
+  checkIfUserIsAdmin() {
     this.auth.getUser()
-      .subscribe((user: User) => {
-        const userHierarchy = user.hierarchy;
-
-        if (userHierarchy > 1) {
-
-          this.navbarOptions = [
-            {display: 'Sair', route: 'logout'}
-          ]
-        }
-      });
-
-  }
-
-  logout(): void {
-    this.router.navigate(['logout']);
+    .subscribe((user: User) => {
+      this.userIsAdmin = user.hierarchy > 1;
+    });
   }
 }

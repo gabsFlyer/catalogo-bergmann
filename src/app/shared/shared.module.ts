@@ -1,13 +1,13 @@
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarDashboardComponent } from './components/navbar-dashboard/navbar-dashboard.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
-    NavbarComponent,
+    NavbarDashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +20,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     }
   ],
   exports: [
-    NavbarComponent,
+    NavbarDashboardComponent,
   ]
 })
 export class SharedModule { }
