@@ -1,3 +1,4 @@
+import { ProductDashboardListComponent } from './modules/product/components/product-dashboard-list/product-dashboard-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './modules/dashboard/components/dashboard/dashboard.component';
@@ -38,6 +39,12 @@ const routes: Routes = [
     path: 'dashboard',
     pathMatch: 'full',
     component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/products',
+    pathMatch: 'full',
+    component: ProductDashboardListComponent,
     canActivate: [AuthGuard]
   },
 ];
