@@ -1,4 +1,8 @@
-<h1>hello world</h1>
-<div *ngIf="userLogged">Usuário logado</div>
+<main style="overflow: hidden">
 
-<span (click)="logout()">sair</span>
+  <ng-container *ngIf="userIsLogged">
+    <app-navbar-dashboard *ngIf="userIsAdmin"></app-navbar-dashboard>
+  </ng-container>
+
+  <router-outlet></router-outlet>
+</main>

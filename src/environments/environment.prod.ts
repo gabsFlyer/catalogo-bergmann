@@ -1,3 +1,8 @@
+const apiUrl = '';
+
 export const environment = {
-  production: true
+  production: true,
+  sessionStorage: {
+    userToken: 'catalogo-user-token'
+  }
 };
