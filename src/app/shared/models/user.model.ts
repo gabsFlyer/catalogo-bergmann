@@ -3,4 +3,5 @@ export class User {
   phone!: string;
   email!: string;
   password!: string;
+  hierarchy!: number;
 }

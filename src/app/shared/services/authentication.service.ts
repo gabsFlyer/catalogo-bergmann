@@ -38,6 +38,12 @@ export class AuthenticationService {
       .pipe(map(res => res as IAccessToken));
   }
 
+  getUser(): Observable<User> {
+    const url = apiEndpoints.auth.me;
+
+    return this.http.post<User>(url, null);
+  }
+
   logout() {
     this.clearToken();
     this.checkStatus();
