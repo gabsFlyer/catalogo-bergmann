@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './modules/product/product.module';
+import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ProductModule } from './modules/product/product.module';
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AngularMaterialModule,
     SharedModule,
     LoginModule,
     ProductModule,

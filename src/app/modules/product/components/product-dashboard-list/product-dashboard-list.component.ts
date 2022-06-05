@@ -37,4 +37,12 @@ export class ProductDashboardListComponent implements OnInit {
     this.loadProducts();
   }
 
+  editProduct(product: Product) {
+    console.log('editing product ', product);
+  }
+
+  deleteProduct(product: Product) {
+    console.log('deleting product ', product);
+  }
+
 }

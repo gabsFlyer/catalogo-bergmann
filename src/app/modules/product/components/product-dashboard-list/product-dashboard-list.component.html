@@ -20,18 +20,26 @@
             <tr>
               <th scope="col">Nome</th>
               <th scope="col">Descrição</th>
-              <th scope="col">Ações</th>
+              <th scope="col"></th>
             </tr>
           </thead>
-          <tbody class="overflow-scroll">
+          <tbody>
             <tr *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage,
                                                               currentPage: currentPage,
                                                               totalItems: totalItems
                                                             }">
-              <!-- <th scope="row">1</th> -->
-              <td>{{product.name}}</td>
-              <td>{{product.description}}</td>
-              <td>@mdo</td>
+              <td>
+                {{product.name}}
+              </td>
+              <td>
+                {{product.description}}
+              </td>
+              <td>
+                <div class="d-flex justify-content-around align-items-center">
+                  <mat-icon role="button" (click)="editProduct(product)">edit</mat-icon>
+                  <mat-icon role="button" (click)="deleteProduct(product)">delete</mat-icon>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>

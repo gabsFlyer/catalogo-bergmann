@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductDashboardListComponent } from './components/product-dashboard-list/product-dashboard-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 
 
@@ -12,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,
     NgxPaginationModule,
+    AngularMaterialModule,
   ],
   exports: [
     ProductDashboardListComponent,
