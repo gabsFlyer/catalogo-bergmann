@@ -10,7 +10,39 @@
       <input type="text" class="form-control" placeholder="Pesquisar produtos">
       <button class="btn btn-outline-primary" type="button">Pesquisar</button>
     </div>
+  </div>
 
+  <div class="row">
+    <div class="container">
+      <div class="scrollable">
+        <table class="table table-borderless table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="overflow-scroll">
+            <tr *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage,
+                                                              currentPage: currentPage,
+                                                              totalItems: totalItems
+                                                            }">
+              <!-- <th scope="row">1</th> -->
+              <td>{{product.name}}</td>
+              <td>{{product.description}}</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pagination-controls
+        (pageChange)="pageChange($event)"
+        previousLabel="Anterior"
+        nextLabel="Próximo"
+      ></pagination-controls>
+    </div>
   </div>
 
 
