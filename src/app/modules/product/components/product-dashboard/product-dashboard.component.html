@@ -1,1 +1,70 @@
-<p>product-dashboard works!</p>
+<div class="container-fluid scrollable">
+  <h1>Cadastro de Produtos</h1>
+
+  <div class="row g-3">
+    <div class="col-sm-3 d-flex justify-content-center align-itens-start mt-5">
+      <div class="rounded " style="height: 150px; width: 150px; background-color: gray;"></div>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="row g-3">
+        <div class="form-group">
+          <label for="name" class="form-label">Nome do produto</label>
+          <input id="name" type="text" class="form-control" [(ngModel)]="product.name">
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="form-group">
+          <label for="description" class="form-label">Descrição</label>
+          <input id="description" type="text" class="form-control" [(ngModel)]="product.description">
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-md-2">
+          <label for="weight" class="form-label">Peso</label>
+          <input id="weight" type="number" class="form-control" [(ngModel)]="product.weight">
+        </div>
+
+        <div class="col-md-4">
+          <label for="measurement-unit" class="form-label">Unidade medida</label>
+          <select id="measurement-unit" class="form-select">
+            <option selected>Selecionar</option>
+            <option *ngFor="let measurementUnit of measurementUnits" [ngValue]="measurementUnit.id">{{measurementUnit.unit}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-sm-4 text-truncate">
+          <label for="purchase-price" class="form-label">Valor compra</label>
+          <input id="purchase-price" type="number" class="form-control" [(ngModel)]="product.purchase_price">
+        </div>
+
+        <div class="col-sm-4 text-truncate">
+          <label for="unit-price" class="form-label">Percentual máximo de desconto</label>
+          <input id="unit-price" type="number" class="form-control" [(ngModel)]="product.unit_price">
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-sm-4 text-truncate">
+          <label for="unit-price" class="form-label">Venda Avulso</label>
+          <input id="unit-price" type="number" class="form-control" [(ngModel)]="product.unit_price">
+        </div>
+
+        <div class="col-sm-4 text-truncate">
+          <label for="wholesale-price" class="form-label">Venda Atacado</label>
+          <input id="wholesale-price" type="number" class="form-control" [(ngModel)]="product.wholesale_price">
+        </div>
+
+        <div class="col-sm-4 text-truncate">
+          <label for="wholesale-price" class="form-label">Qtd mínima atacado</label>
+          <input id="wholesale-price" type="number" class="form-control" [(ngModel)]="product.wholesale_minimum_quantity">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ export class Product {
   name!: string;
   description!: string;
   weight!: number;
+  purchase_price!: number;
   unit_price!: number;
   wholesale_price!: number;
   wholesale_minimum_quantity!: number;
