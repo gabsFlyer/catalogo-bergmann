@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IResponsePageable } from 'src/app/shared/interfaces/response-pageable.interface';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from '../../services/product.service';
@@ -17,6 +18,7 @@ export class ProductDashboardListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +37,10 @@ export class ProductDashboardListComponent implements OnInit {
   pageChange(page: number) {
     this.currentPage = page;
     this.loadProducts();
+  }
+
+  addProduct() {
+    this.router.navigate(['dashboard/products/new']);
   }
 
   editProduct(product: Product) {
