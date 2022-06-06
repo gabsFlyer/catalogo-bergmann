@@ -29,7 +29,7 @@
 
         <div class="col-md-4">
           <label for="measurement-unit" class="form-label">Unidade medida</label>
-          <select id="measurement-unit" class="form-select">
+          <select id="measurement-unit" class="form-select" [(ngModel)]="product.measurement_unit_id">
             <option selected>Selecionar</option>
             <option *ngFor="let measurementUnit of measurementUnits" [ngValue]="measurementUnit.id">{{measurementUnit.unit}}</option>
           </select>

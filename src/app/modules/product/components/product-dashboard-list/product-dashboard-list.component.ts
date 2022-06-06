@@ -44,7 +44,7 @@ export class ProductDashboardListComponent implements OnInit {
   }
 
   editProduct(product: Product) {
-    console.log('editing product ', product);
+    this.router.navigate([`dashboard/products/edit/${product.id}`]);
   }
 
   deleteProduct(product: Product) {

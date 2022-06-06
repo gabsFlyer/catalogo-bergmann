@@ -21,4 +21,11 @@ export class ProductService {
     return this.http
       .get<IResponsePageable<Array<Product>>>(url);
   }
+
+  getProduct(id: string): Observable<Product> {
+    const url = Utilities.formatString(apiEndpoints.product.show, id);
+
+    return this.http
+      .get<Product>(url);
+  }
 }

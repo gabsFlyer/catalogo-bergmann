@@ -55,7 +55,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard/products/edit',
+    path: 'dashboard/products/edit/:id',
     pathMatch: 'full',
     component: ProductDashboardComponent,
     canActivate: [AuthGuard]

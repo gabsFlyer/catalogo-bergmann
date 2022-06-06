@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Route, Router } from '@angular/router';
 import { MeasurementUnitService } from 'src/app/modules/measurement-unit/services/measurement-unit.service';
 import { MeasurementUnit } from 'src/app/shared/models/measurement-unit.model';
 import { Product } from 'src/app/shared/models/product.model';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -15,10 +17,27 @@ export class ProductDashboardComponent implements OnInit {
 
   constructor(
     private measurementUnitService: MeasurementUnitService,
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.loadMeasurementUnits();
+
+    this.route.params.subscribe((params: Params) => {
+      if (params['id']) {
+        this.productService.getProduct(params['id'])
+          .subscribe({
+            next: (product: Product) => {
+              this.product = product;
+            },
+            error: (err) => {
+              this.router.navigate(['dashboard/products']);
+            }
+          });
+      }
+    })
   }
 
   loadMeasurementUnits() {
