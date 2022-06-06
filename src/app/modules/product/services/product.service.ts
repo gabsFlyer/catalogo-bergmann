@@ -28,4 +28,25 @@ export class ProductService {
     return this.http
       .get<Product>(url);
   }
+
+  storeProduct(product: Product): Observable<Product> {
+    const url = apiEndpoints.product.store;
+
+    return this.http
+      .post<Product>(url, product);
+  }
+
+  updateProduct(id: string, product: Product): Observable<Product> {
+    const url = Utilities.formatString(apiEndpoints.product.update, id);
+
+    return this.http
+      .put<Product>(url, product);
+  }
+
+  destroyProduct(id: string): Observable<Object> {
+    const url = Utilities.formatString(apiEndpoints.product.destroy, id);
+
+    return this.http
+      .delete(url);
+  }
 }
