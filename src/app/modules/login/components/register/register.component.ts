@@ -3,7 +3,7 @@ import { IApiError } from './../../../../shared/interfaces/api-error.interface';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { User } from './../../../../shared/models/user.model';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, UrlTree } from '@angular/router';
 import { IAccessToken } from 'src/app/shared/interfaces/access-token.interface';
 
 @Component({
@@ -22,8 +22,10 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.isLogged.subscribe((logged: boolean) => {
-      this.router.navigate(['dashboard']);
+    this.auth.isLogged.subscribe((logged: boolean | UrlTree) => {
+      if (logged === true){
+        this.router.navigate(['dashboard']);
+      }
     });
 
     this.auth.checkStatus();
