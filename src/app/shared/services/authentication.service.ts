@@ -1,4 +1,3 @@
-import { Router, UrlTree } from '@angular/router';
 import { User } from './../models/user.model';
 import { IAccessToken } from './../interfaces/access-token.interface';
 import { map, Observable, ReplaySubject } from 'rxjs';
@@ -14,12 +13,11 @@ import { apiEndpoints } from '../constants/api-endpoints.constant';
 })
 export class AuthenticationService {
 
-  private logged = new ReplaySubject<boolean | UrlTree>(1);
+  private logged = new ReplaySubject<boolean>(1);
   isLogged = this.logged.asObservable();
 
   constructor(
-    private http: HttpClient,
-    private router: Router,
+    private http: HttpClient
   ) { }
 
   signIn(email: string, password: string): Observable<IAccessToken> {
@@ -69,14 +67,10 @@ export class AuthenticationService {
   }
 
   checkStatus() {
-    this.getUser()
-      .subscribe({
-        next: (user: User) => {
-          this.logged.next(true);
-        },
-        error: (err) => {
-          this.logged.next(this.router.createUrlTree(['/login']));
-        }
-      });
+    if (this.getToken()) {
+      this.logged.next(true);
+    } else {
+      this.logged.next(false);
+    }
   }
 }

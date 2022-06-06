@@ -1,5 +1,6 @@
 import { User } from './shared/models/user.model';
-import { UrlTree } from '@angular/router';
+import { Router } from '@angular/router';
+import { INavbarOption } from './shared/interfaces/navbar-option.interface';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './shared/services/authentication.service';
 
@@ -13,13 +14,16 @@ export class AppComponent implements OnInit {
   userIsLogged: boolean = false;
   userIsAdmin: boolean = false;
 
+  // navbarOptions: Array<INavbarOption> = new Array();
+
+
   constructor (
     private auth: AuthenticationService,
   ) {  }
 
   ngOnInit(): void {
-    this.auth.isLogged.subscribe((logged: boolean | UrlTree) => {
-      this.userIsLogged = logged === true;
+    this.auth.isLogged.subscribe((logged: boolean) => {
+      this.userIsLogged = logged;
       if (this.userIsLogged) {
         this.checkIfUserIsAdmin();
       }
