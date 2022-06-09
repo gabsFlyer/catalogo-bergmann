@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label for="file">
+    <img *ngIf="!!imageSource else uploadImage" src="{{imageSource}}" class="img-thumbnail thumbnail">
+    <ng-template #uploadImage>
+      <div class="rounded thumbnail" style="height: 150px; width: 150px; background-color: gray;"></div>
+
+    </ng-template>
+  </label>
+  <input
+      id="file"
+      type="file"
+      class="form-control"
+      style="display: none"
+      (change)="fileChange($event)">
+</div>
