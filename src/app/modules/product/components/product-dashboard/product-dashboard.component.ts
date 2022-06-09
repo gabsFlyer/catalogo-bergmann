@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Route, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MeasurementUnitService } from 'src/app/modules/measurement-unit/services/measurement-unit.service';
+import { File } from 'src/app/shared/models/file.model';
 import { MeasurementUnit } from 'src/app/shared/models/measurement-unit.model';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from '../../services/product.service';
@@ -16,12 +17,8 @@ export class ProductDashboardComponent implements OnInit {
   product: Product = new Product();
   measurementUnits: Array<MeasurementUnit> = new Array;
 
-  get productMeasurementeUnit() {
-    return this.product.measurement_unit_id ?? this.product.measurement_unit.id;
-  }
-
-  set productMeasurementeUnit(id: number) {
-    this.product.measurement_unit_id = id;
+  get productImage() {
+    return this.product.file ? this.product.file.file_name : '';
   }
 
   constructor(
@@ -41,6 +38,8 @@ export class ProductDashboardComponent implements OnInit {
           .subscribe({
             next: (product: Product) => {
               this.product = product;
+              this.product.file = this.product.file ?? new File();
+              this.product.measurement_unit = this.product.measurement_unit ?? new MeasurementUnit();
             },
             error: (err) => {
               this.router.navigate(['dashboard/products']);
@@ -68,14 +67,14 @@ export class ProductDashboardComponent implements OnInit {
       this.productService.updateProduct(this.product.id.toString(), this.product)
         .subscribe({
           next: (product: Product) => {
-            this.toastr.success('Registro salvo com sucesso')
+            this.toastr.success('Registro salvo com sucesso');
             this.router.navigate(['dashboard/products']);
           },
           error: (err) => {
             this.toastr.error('Houve um erro ao salvar o produto');
             console.error(err);
           }
-        })
+        });
     }
   }
 

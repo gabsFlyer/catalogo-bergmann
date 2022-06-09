@@ -3,7 +3,7 @@
 
   <div class="row g-3">
     <div class="col-sm-3 d-flex justify-content-center align-itens-start mt-5">
-      <div class="rounded " style="height: 150px; width: 150px; background-color: gray;"></div>
+      <app-image-upload source="{{productImage}}"></app-image-upload>
     </div>
 
     <div class="col-sm-8">
@@ -29,7 +29,7 @@
 
         <div class="col-md-4">
           <label for="measurement-unit" class="form-label">Unidade medida</label>
-          <select id="measurement-unit" class="form-select" [(ngModel)]="productMeasurementeUnit">
+          <select id="measurement-unit" class="form-select" [(ngModel)]="product.measurement_unit.id">
             <option selected>Selecionar</option>
             <option *ngFor="let measurementUnit of measurementUnits" [ngValue]="measurementUnit.id">{{measurementUnit.unit}}</option>
           </select>
