@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { File } from '../../models/file.model';
+import { ImageUploadService } from '../../services/image-upload.service';
 
 @Component({
   selector: 'app-image-upload',
@@ -15,13 +17,57 @@ export class ImageUploadComponent implements OnInit {
     return this.source ? `${this.imageDir}/${this.source}` : '';
   }
 
-  constructor() { }
+  constructor(
+    private imageUploadService: ImageUploadService,
+  ) { }
 
   ngOnInit(): void {
   }
 
-  fileChange($event: any) {
-    console.log('filechange', $event);
+  fileChange(fileInput: any) {
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e : any) => {
+        const image = e.target.result;
+        console.log('upload completo', image);
+
+        this.imageUploadService.storeImage(image)
+          .subscribe({
+            next: (file: File) => {
+              console.log('upload', file);
+            }
+          });
+
+        // console.log('upload', foo)
+      }
+
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
   }
+
+  // private createReader() {
+
+  // }
+
+  // selectFiles(event: any): void {
+  //   this.message = [];
+  //   this.progressInfos = [];
+  //   this.selectedFiles = event.target.files;
+  //   this.previews = [];
+
+  //   if (this.selectedFiles && this.selectedFiles[0]) {
+  //     const numberOfFiles = this.selectedFiles.length;
+
+  //     for (let i = 0; i < numberOfFiles; i++) {
+  //       const reader = new FileReader();
+
+  //       reader.onload = (e: any) => {
+  //         this.previews.push(e.target.result);
+  //       };
+
+  //       reader.readAsDataURL(this.selectedFiles[i]);
+  //     }
+  //   }
+  // }
 
 }

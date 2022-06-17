@@ -8,12 +8,12 @@ export const apiEndpoints = {
     signUp: `${baseUrl}/auth/signUp`,
     me: `${baseUrl}/auth/me`,
   },
-  product: {
-    index: `${baseUrl}/product?page={0}`,
-    show: `${baseUrl}/product/{0}`,
-    store: `${baseUrl}/product`,
-    update: `${baseUrl}/product/{0}`,
-    destroy: `${baseUrl}/product/{0}`,
+  file: {
+    index: `${baseUrl}/file`,
+    show: `${baseUrl}/file/{0}`,
+    store: `${baseUrl}/file`,
+    update: `${baseUrl}/file/{0}`,
+    destroy: `${baseUrl}/file/{0}`,
   },
   measurementUnit: {
     index: `${baseUrl}/measurement-unit`,
@@ -21,5 +21,12 @@ export const apiEndpoints = {
     store: `${baseUrl}/measurement-unit`,
     update: `${baseUrl}/measurement-unit/{0}`,
     destroy: `${baseUrl}/measurement-unit/{0}`,
+  },
+  product: {
+    index: `${baseUrl}/product?page={0}`,
+    show: `${baseUrl}/product/{0}`,
+    store: `${baseUrl}/product`,
+    update: `${baseUrl}/product/{0}`,
+    destroy: `${baseUrl}/product/{0}`,
   },
 }
