@@ -3,7 +3,7 @@ import { IAccessToken } from './../interfaces/access-token.interface';
 import { map, Observable, ReplaySubject } from 'rxjs';
 import { SignInModel } from './../models/sign-in.model';
 import { environment } from './../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiEndpoints } from '../constants/api-endpoints.constant';
 
