@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - main
+
+name: 🚀 Production Deploy
+
+jobs:
+  build:
+    name: ⛏️ Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🏠 Checkout
+        uses: actions/checkout@v2
+
+      - name: ⚙️ Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 13
+
+      - name: 📦 Build
+        run: npm run build:ci
+
+      - name: 📤 Upload artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: dist
+          path: dist

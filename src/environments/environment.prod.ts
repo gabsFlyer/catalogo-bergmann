@@ -1,8 +1,11 @@
 const apiUrl = '';
 
 export const environment = {
-  production: true,
+  production: false,
   sessionStorage: {
-    userToken: 'catalogo-user-token'
+    userToken: 'catalogo-user-token',
+  },
+  api: {
+    endpoint: `${apiUrl}/api`,
   }
 };
