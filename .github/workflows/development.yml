@@ -1,9 +1,9 @@
 on:
   push:
     branches:
-      - main
+      - development
 
-name: 🚀 Production Deploy
+name: 🚀 Development Deploy
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: 📦 Build
-        run: npm run build:prd
+        run: npm run build:dev
 
       - name: 📤 Upload artifact
         uses: actions/upload-artifact@v3.1.0
@@ -53,5 +53,5 @@ jobs:
         uses: EndBug/add-and-commit@v9.0.0
         with:
           message: ${{ github.event.head_commit.message }}
-          new_branch: 'front/production'
-          push: 'origin front/production --set-upstream --force'
+          new_branch: 'front/development'
+          push: 'origin front/development --set-upstream --force'
