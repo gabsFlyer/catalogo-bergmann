@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './modules/product/product.module';
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -27,6 +28,10 @@ import { AngularMaterialModule } from './modules/angular-material/angular-materi
     ProductModule,
   ],
   providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
   ],
   bootstrap: [AppComponent]
 })
