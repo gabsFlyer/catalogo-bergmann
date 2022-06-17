@@ -52,5 +52,6 @@ jobs:
       - name: 📤 Commit changes
         uses: EndBug/add-and-commit@v9.0.0
         with:
+          message: ${{ github.event.head_commit.message }}
           new_branch: 'front/production'
           push: 'origin front/production --set-upstream --force'
