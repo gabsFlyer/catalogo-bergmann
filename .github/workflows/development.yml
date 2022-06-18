@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: 📦 Build
-        run: npm run build:prd
+        run: npm run build:dev
 
       - name: 📤 Upload artifact
         uses: actions/upload-artifact@v3.1.0
