@@ -3,6 +3,9 @@ on:
     branches:
       - main
 
+env:
+  RELEASE_BRANCH: 'front/production'
+
 name: 🚀 Production Deploy
 
 jobs:
@@ -42,21 +45,14 @@ jobs:
         with:
           repository: gabsFlyer/releases-repo
           ssh-key: ${{ secrets.ssh_key }}
-          ref: 'front/production'
+          ref: ${{ env.RELEASE_BRANCH }}
 
       - name: 🧹 Clean old repository files
         uses: EndBug/add-and-commit@v9.0.0
         with:
-          # message: ${{ github.event.head_commit.message }}
           remove: './*'
-          new_branch: 'front/production'
-          push: 'origin front/production --set-upstream --force'
-
-      # - name: 🧹 Clean old repository files
-      #   run: rm *
-
-      # - name: Display structure
-      #   run: ls -R
+          new_branch: ${{ env.RELEASE_BRANCH }}
+          push: 'origin $RELEASE_BRANCH --set-upstream --force'
 
       - name: ⬇️ Download artifact
         uses: actions/download-artifact@v3.0.0
@@ -64,12 +60,9 @@ jobs:
           name: dist
           path: './'
 
-      - name: Display structure of downloaded files
-        run: ls -R
-
       - name: 📤 Commit changes
         uses: EndBug/add-and-commit@v9.0.0
         with:
           message: ${{ github.event.head_commit.message }}
-          new_branch: 'front/production'
-          push: 'origin front/production --set-upstream --force'
+          new_branch: ${{ env.RELEASE_BRANCH }}
+          push: 'origin $RELEASE_BRANCH --set-upstream --force'
