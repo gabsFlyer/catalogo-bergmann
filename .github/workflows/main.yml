@@ -52,7 +52,7 @@ jobs:
         with:
           remove: './*'
           new_branch: ${{ env.RELEASE_BRANCH }}
-          push: 'origin $RELEASE_BRANCH --set-upstream --force'
+          push: 'origin ${{env.RELEASE_BRANCH}} --set-upstream --force'
 
       - name: ⬇️ Download artifact
         uses: actions/download-artifact@v3.0.0
@@ -65,4 +65,4 @@ jobs:
         with:
           message: ${{ github.event.head_commit.message }}
           new_branch: ${{ env.RELEASE_BRANCH }}
-          push: 'origin $RELEASE_BRANCH --set-upstream --force'
+          push: 'origin ${{env.RELEASE_BRANCH}} --set-upstream --force'
