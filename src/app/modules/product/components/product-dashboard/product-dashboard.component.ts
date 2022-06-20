@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MeasurementUnitService } from 'src/app/modules/measurement-unit/services/measurement-unit.service';
+import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
 import { File } from 'src/app/shared/models/file.model';
 import { MeasurementUnit } from 'src/app/shared/models/measurement-unit.model';
 import { Product } from 'src/app/shared/models/product.model';
@@ -42,7 +43,7 @@ export class ProductDashboardComponent implements OnInit {
               this.product.measurement_unit = this.product.measurement_unit ?? new MeasurementUnit();
             },
             error: (err) => {
-              this.router.navigate(['dashboard/products']);
+              this.router.navigate([RoutesConstant.dashboard.products.list]);
             }
           });
       }
@@ -59,7 +60,7 @@ export class ProductDashboardComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['dashboard/products']);
+    this.router.navigate([RoutesConstant.dashboard.products.list]);
   }
 
   save() {
@@ -68,7 +69,7 @@ export class ProductDashboardComponent implements OnInit {
         .subscribe({
           next: (product: Product) => {
             this.toastr.success('Registro salvo com sucesso');
-            this.router.navigate(['dashboard/products']);
+            this.router.navigate([RoutesConstant.dashboard.products.list]);
           },
           error: (err) => {
             this.toastr.error('Houve um erro ao salvar o produto');

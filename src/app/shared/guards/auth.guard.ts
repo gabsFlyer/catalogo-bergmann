@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { RoutesConstant } from '../constants/routes.constant';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
@@ -21,7 +22,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['login']);
+    this.router.navigate([RoutesConstant.auth.login]);
     return false;
   }
 

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
 import { IResponsePageable } from 'src/app/shared/interfaces/response-pageable.interface';
 import { Product } from 'src/app/shared/models/product.model';
+import { Utilities } from 'src/app/shared/util/utilities.util';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -40,11 +42,12 @@ export class ProductDashboardListComponent implements OnInit {
   }
 
   addProduct() {
-    this.router.navigate(['dashboard/products/new']);
+    this.router.navigate([RoutesConstant.dashboard.products.new]);
   }
 
   editProduct(product: Product) {
-    this.router.navigate([`dashboard/products/edit/${product.id}`]);
+    const url = Utilities.formatString(RoutesConstant.dashboard.products.edit, product.id.toString());
+    this.router.navigate([url]);
   }
 
   deleteProduct(product: Product) {

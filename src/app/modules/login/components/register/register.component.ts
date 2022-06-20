@@ -5,6 +5,7 @@ import { User } from './../../../../shared/models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IAccessToken } from 'src/app/shared/interfaces/access-token.interface';
+import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
 
 @Component({
   selector: 'app-register',
@@ -22,21 +23,18 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.isLogged.subscribe((logged: boolean) => {
-      this.router.navigate(['dashboard']);
-    });
-
-    this.auth.checkStatus();
+    if (this.auth.getToken()) {
+        this.router.navigate([RoutesConstant.auth.login]);
+    }
   }
 
   register() {
-    console.log(this.user);
     this.auth.signUp(this.user)
       .subscribe({
         next: (accessToken: IAccessToken) => {
           this.auth.setToken(accessToken.access_token);
 
-          this.router.navigate(['dashboard']);
+          this.router.navigate([RoutesConstant.dashboard.home]);
         },
         error: (errorResponse) => {
           const apiError: IApiError = errorResponse.error;
@@ -47,7 +45,7 @@ export class RegisterComponent implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(['login']);
+    this.router.navigate([RoutesConstant.auth.login]);
   }
 
 }
