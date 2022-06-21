@@ -51,7 +51,11 @@ export class ProductDashboardListComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    console.log('deleting product ', product);
+    this.productService
+      .destroyProduct(product.id)
+      .subscribe(res => {
+        this.loadProducts();
+      });
   }
 
 }
