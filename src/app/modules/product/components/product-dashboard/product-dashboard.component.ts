@@ -6,6 +6,7 @@ import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
 import { File } from 'src/app/shared/models/file.model';
 import { MeasurementUnit } from 'src/app/shared/models/measurement-unit.model';
 import { Product } from 'src/app/shared/models/product.model';
+import { ImageUploadService } from 'src/app/shared/services/image-upload.service';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class ProductDashboardComponent implements OnInit {
   constructor(
     private measurementUnitService: MeasurementUnitService,
     private productService: ProductService,
+    private imageService: ImageUploadService,
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
@@ -50,6 +52,10 @@ export class ProductDashboardComponent implements OnInit {
     })
   }
 
+  editing(): boolean {
+    return !!this.product.id;
+  }
+
   loadMeasurementUnits() {
     this.measurementUnitService.getMeasurementUnits()
       .subscribe({
@@ -60,14 +66,17 @@ export class ProductDashboardComponent implements OnInit {
   }
 
   cancel() {
-    //deletar imagem se exister
+    if (!this.editing() && this.product.file) {
+      this.imageService.destroyImage(this.product.file.id)
+        .subscribe();
+    }
 
     this.router.navigate([RoutesConstant.dashboard.products.list]);
   }
 
   save() {
-    if (this.product.id) {
-      this.productService.updateProduct(this.product.id.toString(), this.product)
+    if (this.editing()) {
+      this.productService.updateProduct(this.product.id, this.product)
         .subscribe({
           next: (product: Product) => {
             this.toastr.success('Registro editado com sucesso');
