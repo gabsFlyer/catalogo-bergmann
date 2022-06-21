@@ -60,6 +60,8 @@ export class ProductDashboardComponent implements OnInit {
   }
 
   cancel() {
+    //deletar imagem se exister
+
     this.router.navigate([RoutesConstant.dashboard.products.list]);
   }
 
@@ -68,15 +70,29 @@ export class ProductDashboardComponent implements OnInit {
       this.productService.updateProduct(this.product.id.toString(), this.product)
         .subscribe({
           next: (product: Product) => {
+            this.toastr.success('Registro editado com sucesso');
+            this.router.navigate([RoutesConstant.dashboard.products.list]);
+          },
+          error: (err) => {
+            this.toastr.error('Houve um erro ao editar o produto');
+          }
+        });
+    } else {
+      this.productService.storeProduct(this.product)
+        .subscribe({
+          next: (product: Product) => {
             this.toastr.success('Registro salvo com sucesso');
             this.router.navigate([RoutesConstant.dashboard.products.list]);
           },
           error: (err) => {
             this.toastr.error('Houve um erro ao salvar o produto');
-            console.error(err);
           }
         });
     }
+  }
+
+  fileUploaded(file: File): void {
+    this.product.file = file;
   }
 
 }

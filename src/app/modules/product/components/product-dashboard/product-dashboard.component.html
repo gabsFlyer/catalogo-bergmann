@@ -3,7 +3,7 @@
 
   <div class="row g-3">
     <div class="col-sm-3 d-flex justify-content-center align-itens-start mt-5">
-      <app-image-upload source="{{productImage}}"></app-image-upload>
+      <app-image-upload source="{{productImage}}" (fileUploaded)="fileUploaded($event)"></app-image-upload>
     </div>
 
     <div class="col-sm-8">
@@ -44,7 +44,7 @@
 
         <div class="col-sm-4 text-truncate">
           <label for="unit-price" class="form-label">Percentual máximo de desconto</label>
-          <input id="unit-price" type="number" class="form-control" [(ngModel)]="product.unit_price">
+          <input id="unit-price" type="number" class="form-control" [(ngModel)]="product.maximum_percent_discount">
         </div>
       </div>
 
