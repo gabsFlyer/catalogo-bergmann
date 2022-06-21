@@ -18,35 +18,30 @@ export class ProductService {
   getProducts(page: number): Observable<IResponsePageable<Array<Product>>> {
     const url = Utilities.formatString(apiEndpoints.product.index, page.toString());
 
-    return this.http
-      .get<IResponsePageable<Array<Product>>>(url);
+    return this.http.get<IResponsePageable<Array<Product>>>(url);
   }
 
-  getProduct(id: string): Observable<Product> {
-    const url = Utilities.formatString(apiEndpoints.product.show, id);
+  getProduct(id: number): Observable<Product> {
+    const url = Utilities.formatString(apiEndpoints.product.show, id.toString());
 
-    return this.http
-      .get<Product>(url);
+    return this.http.get<Product>(url);
   }
 
   storeProduct(product: Product): Observable<Product> {
     const url = apiEndpoints.product.store;
 
-    return this.http
-      .post<Product>(url, product);
+    return this.http.post<Product>(url, product);
   }
 
-  updateProduct(id: string, product: Product): Observable<Product> {
-    const url = Utilities.formatString(apiEndpoints.product.update, id);
+  updateProduct(id: number, product: Product): Observable<Product> {
+    const url = Utilities.formatString(apiEndpoints.product.update, id.toString());
 
-    return this.http
-      .put<Product>(url, product);
+    return this.http.put<Product>(url, product);
   }
 
-  destroyProduct(id: string): Observable<Object> {
-    const url = Utilities.formatString(apiEndpoints.product.destroy, id);
+  destroyProduct(id: number): Observable<Object> {
+    const url = Utilities.formatString(apiEndpoints.product.destroy, id.toString());
 
-    return this.http
-      .delete(url);
+    return this.http.delete(url);
   }
 }
