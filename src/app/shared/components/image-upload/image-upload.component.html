@@ -1,11 +1,12 @@
 <div class="form-group">
-  <label for="file">
-    <img *ngIf="!!imageSource else uploadImage" src="{{imageSource}}" class="img-thumbnail thumbnail">
-    <ng-template #uploadImage>
-      <div class="rounded thumbnail" style="height: 150px; width: 150px; background-color: gray;"></div>
+  <label for="file" role="button">
+    <img *ngIf="!!imageSource && !uploading" src="{{imageSource}}" class="img-thumbnail thumbnail">
 
-    </ng-template>
+    <div class="upload thumbnail" *ngIf="!imageSource || uploading">
+      <mat-icon [ngClass]="{'loading': uploading}" >cloud_upload</mat-icon>
+    </div>
   </label>
+
   <input
       id="file"
       type="file"

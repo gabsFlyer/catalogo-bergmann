@@ -11,6 +11,7 @@ import { ImageUploadService } from '../../services/image-upload.service';
 export class ImageUploadComponent implements OnInit {
 
   imageDir: string = environment.api.images;
+  uploading: boolean = false;
   @Input() source: string = '';
 
   get imageSource() {
@@ -26,15 +27,18 @@ export class ImageUploadComponent implements OnInit {
 
   fileChange(fileInput: any) {
     if (fileInput.target.files && fileInput.target.files[0]) {
+      this.uploading = true;
+
       const reader = new FileReader();
       reader.onload = (e : any) => {
         const image = e.target.result;
-        console.log('upload completo', image);
 
         this.imageUploadService.storeImage(image)
           .subscribe({
             next: (file: File) => {
-              console.log('upload', file);
+              this.source = file.file_name;
+              this.uploading = false;
+              // console.log('upload', file);
             }
           });
 
