@@ -6,6 +6,7 @@ import { NavbarDashboardComponent } from './components/navbar-dashboard/navbar-d
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { MatIconModule } from '@angular/material/icon';
+import { UnprocessableEntityInterceptor } from './interceptors/unprocessable-entity.interceptor';
 
 
 @NgModule({
@@ -26,6 +27,11 @@ import { MatIconModule } from '@angular/material/icon';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UnauthorizedInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnprocessableEntityInterceptor,
       multi: true
     }
   ],
