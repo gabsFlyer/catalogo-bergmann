@@ -1,4 +1,4 @@
-const apiUrl = '';
+const apiUrl = 'https://distribuidorabergmann.com.br';
 
 export const environment = {
   production: false,
@@ -7,5 +7,6 @@ export const environment = {
   },
   api: {
     endpoint: `${apiUrl}/api`,
+    images: `${apiUrl}/storage`
   }
 };
