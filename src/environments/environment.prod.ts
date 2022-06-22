@@ -7,6 +7,6 @@ export const environment = {
   },
   api: {
     endpoint: `${apiUrl}/api`,
-    images: `${apiUrl}/storage`
+    images: `${apiUrl}/storage`,
   }
 };
