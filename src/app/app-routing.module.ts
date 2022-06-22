@@ -1,3 +1,4 @@
+import { ProductDashboardComponent } from './modules/product/components/product-dashboard/product-dashboard.component';
 import { ProductDashboardListComponent } from './modules/product/components/product-dashboard-list/product-dashboard-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -45,6 +46,18 @@ const routes: Routes = [
     path: 'dashboard/products',
     pathMatch: 'full',
     component: ProductDashboardListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/products/new',
+    pathMatch: 'full',
+    component: ProductDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/products/edit/:id',
+    pathMatch: 'full',
+    component: ProductDashboardComponent,
     canActivate: [AuthGuard]
   },
 ];

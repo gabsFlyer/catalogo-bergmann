@@ -1,0 +1,10 @@
+.scrollable {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.do-not-wrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
