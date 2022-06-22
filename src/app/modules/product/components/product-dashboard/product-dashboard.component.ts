@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -93,8 +94,10 @@ export class ProductDashboardComponent implements OnInit {
             this.toastr.success('Registro salvo com sucesso');
             this.router.navigate([RoutesConstant.dashboard.products.list]);
           },
-          error: (err) => {
-            this.toastr.error('Houve um erro ao salvar o produto');
+          error: (err: HttpErrorResponse) => {
+            if (err.status !== 422) {
+              this.toastr.error('Houve um erro ao salvar o produto');
+            }
           }
         });
     }
