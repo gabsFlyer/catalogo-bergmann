@@ -29,4 +29,11 @@ export const apiEndpoints = {
     update: `${baseUrl}/product/{0}`,
     destroy: `${baseUrl}/product/{0}`,
   },
+  enterprise: {
+    index: `${baseUrl}/enterprise?page={0}`,
+    show: `${baseUrl}/enterprise/{0}`,
+    store: `${baseUrl}/enterprise`,
+    update: `${baseUrl}/enterprise/{0}`,
+    destroy: `${baseUrl}/enterprise/{0}`,
+  },
 }

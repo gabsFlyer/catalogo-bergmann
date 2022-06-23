@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './modules/product/product.module';
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { EnterpriseModule } from './modules/enterprise/enterprise.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     SharedModule,
     LoginModule,
     ProductModule,
+    EnterpriseModule,
   ],
   providers: [
     {
