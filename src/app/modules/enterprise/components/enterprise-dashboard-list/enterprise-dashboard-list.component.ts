@@ -42,12 +42,12 @@ export class EnterpriseDashboardListComponent implements OnInit {
   }
 
   addEnterprise() {
-    // this.router.navigate([RoutesConstant.dashboard.enterprises.new]);
+    this.router.navigate([RoutesConstant.dashboard.enterprises.new]);
   }
 
   editEnterprise(enterprise: Enterprise) {
-    // const url = Utilities.formatString(RoutesConstant.dashboard.enterprise.edit, enterprise.id.toString());
-    // this.router.navigate([url]);
+    const url = Utilities.formatString(RoutesConstant.dashboard.enterprises.edit, enterprise.id.toString());
+    this.router.navigate([url]);
   }
 
   deleteEnterprise(enterprise: Enterprise) {

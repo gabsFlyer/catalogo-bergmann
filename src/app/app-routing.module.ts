@@ -9,6 +9,7 @@ import { LogoutComponent } from './modules/login/components/logout/logout.compon
 import { RegisterComponent } from './modules/login/components/register/register.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { EnterpriseDashboardListComponent } from './modules/enterprise/components/enterprise-dashboard-list/enterprise-dashboard-list.component';
+import { EnterpriseDashboardComponent } from './modules/enterprise/components/enterprise-dashboard/enterprise-dashboard.component';
 
 const routes: Routes = [
   {
@@ -69,18 +70,18 @@ const routes: Routes = [
     component: EnterpriseDashboardListComponent,
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'dashboard/enterprises/new',
-  //   pathMatch: 'full',
-  //   component: EnterpriseDashboardComponent,
-  //   canActivate: [AuthGuard]
-  // },
-  // {
-  //   path: 'dashboard/enterprises/edit/:id',
-  //   pathMatch: 'full',
-  //   component: EnterpriseDashboardComponent,
-  //   canActivate: [AuthGuard]
-  // },
+  {
+    path: 'dashboard/enterprises/new',
+    pathMatch: 'full',
+    component: EnterpriseDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/enterprises/edit/:id',
+    pathMatch: 'full',
+    component: EnterpriseDashboardComponent,
+    canActivate: [AuthGuard]
+  },
 
 
 ];
