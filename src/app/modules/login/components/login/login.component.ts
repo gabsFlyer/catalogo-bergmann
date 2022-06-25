@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   userMail: string = '';
   userPassword: string = '';
+  applicationName: string = environment.application.name;
 
   constructor(
     private auth: AuthenticationService,

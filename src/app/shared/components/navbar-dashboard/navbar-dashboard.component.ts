@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoutesConstant } from '../../constants/routes.constant';
@@ -9,6 +10,7 @@ import { RoutesConstant } from '../../constants/routes.constant';
 })
 export class NavbarDashboardComponent {
   routes = RoutesConstant;
+  applicationName: string = environment.application.name;
 
   constructor(
     private router: Router,

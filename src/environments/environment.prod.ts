@@ -2,6 +2,9 @@ const apiUrl = 'https://distribuidorabergmann.com.br';
 
 export const environment = {
   production: false,
+  application: {
+    name: 'Distribuidora Bergmann'
+  },
   sessionStorage: {
     userToken: 'catalogo-user-token',
   },
