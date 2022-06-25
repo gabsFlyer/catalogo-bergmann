@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-between mb-2">
+      <h1>Empresas</h1>
+
+      <button class="btn btn-primary" type="button" (click)="addEnterprise()">Adicionar Empresa</button>
+  </div>
+
+  <div class="row">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Pesquisar empresas">
+      <button class="btn btn-outline-primary" type="button">Pesquisar</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container">
+      <div class="scrollable">
+        <table class="table table-borderless table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">WhatsApp</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let enterprise of enterprises | paginate: { itemsPerPage: itemsPerPage,
+                                                              currentPage: currentPage,
+                                                              totalItems: totalItems
+                                                            }">
+              <td>
+                {{enterprise.name}}
+              </td>
+              <td>
+                {{enterprise.whatsapp}}
+              </td>
+              <td>
+                <div class="d-flex justify-content-around align-items-center">
+                  <mat-icon role="button" (click)="editEnterprise(enterprise)">edit</mat-icon>
+                  <mat-icon role="button" (click)="deleteEnterprise(enterprise)">delete</mat-icon>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-2 d-flex justify-content-center">
+        <pagination-controls
+        (pageChange)="pageChange($event)"
+        previousLabel="Anterior"
+        nextLabel="Próximo"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+</div>

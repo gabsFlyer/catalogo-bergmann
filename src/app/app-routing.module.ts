@@ -8,6 +8,8 @@ import { LoginComponent } from './modules/login/components/login/login.component
 import { LogoutComponent } from './modules/login/components/logout/logout.component';
 import { RegisterComponent } from './modules/login/components/register/register.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { EnterpriseDashboardListComponent } from './modules/enterprise/components/enterprise-dashboard-list/enterprise-dashboard-list.component';
+import { EnterpriseDashboardComponent } from './modules/enterprise/components/enterprise-dashboard/enterprise-dashboard.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard]
   },
+
   {
     path: 'dashboard/products',
     pathMatch: 'full',
@@ -60,6 +63,27 @@ const routes: Routes = [
     component: ProductDashboardComponent,
     canActivate: [AuthGuard]
   },
+
+  {
+    path: 'dashboard/enterprises',
+    pathMatch: 'full',
+    component: EnterpriseDashboardListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/enterprises/new',
+    pathMatch: 'full',
+    component: EnterpriseDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/enterprises/edit/:id',
+    pathMatch: 'full',
+    component: EnterpriseDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+
+
 ];
 
 @NgModule({
