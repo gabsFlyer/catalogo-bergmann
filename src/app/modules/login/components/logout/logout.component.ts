@@ -16,7 +16,10 @@ export class LogoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.logout();
+    this.auth.logout().subscribe();
+
+    this.auth.clearToken();
+    this.auth.checkStatus();
     this.router.navigate([RoutesConstant.auth.login]);
   }
 
