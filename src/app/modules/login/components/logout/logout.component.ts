@@ -12,15 +12,19 @@ export class LogoutComponent implements OnInit {
 
   constructor(
     private auth: AuthenticationService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.auth.logout().subscribe();
+    this.auth.logout()
+      .subscribe({
+        next: res => this.logout(),
+        error: err => this.logout(),
+      });
+  }
 
+  logout() {
     this.auth.clearToken();
-    this.auth.checkStatus();
-    this.router.navigate([RoutesConstant.auth.login]);
+    location.reload();
   }
 
 }

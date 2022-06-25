@@ -20,11 +20,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.isLogged.subscribe((logged: boolean) => {
+    if (this.auth.userLogged()) {
       this.router.navigate([RoutesConstant.dashboard.home]);
-    });
-
-    this.auth.checkStatus();
+    }
   }
 
   goToRegister() {
@@ -36,7 +34,7 @@ export class LoginComponent implements OnInit {
       .subscribe((accessToken: IAccessToken) => {
         this.auth.setToken(accessToken.access_token);
 
-        this.router.navigate([RoutesConstant.dashboard.home]);
+        location.reload();
       });
   }
 
