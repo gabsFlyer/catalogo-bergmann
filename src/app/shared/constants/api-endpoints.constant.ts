@@ -7,6 +7,8 @@ export const apiEndpoints = {
     signIn: `${baseUrl}/auth/signIn`,
     signUp: `${baseUrl}/auth/signUp`,
     me: `${baseUrl}/auth/me`,
+    refreshToken: `${baseUrl}/auth/refresh`,
+    logout: `${baseUrl}/auth/logout`,
   },
   file: {
     index: `${baseUrl}/file`,
