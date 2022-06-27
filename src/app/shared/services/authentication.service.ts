@@ -64,8 +64,6 @@ export class AuthenticationService {
 
   setToken(token: string) {
     sessionStorage.setItem(environment.sessionStorage.userToken, token);
-
-    location.reload();
   }
 
   clearToken() {

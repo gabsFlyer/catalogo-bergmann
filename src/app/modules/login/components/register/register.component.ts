@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
         next: (accessToken: IAccessToken) => {
           this.auth.setToken(accessToken.access_token);
 
-          this.router.navigate([RoutesConstant.dashboard.home]);
+          location.reload();
         },
         error: (errorResponse) => {
           const apiError: IApiError = errorResponse.error;
