@@ -15,6 +15,7 @@ import { FlyerModule } from './modules/flyer/flyer.module';
 import { ProductRoutingModule } from './modules/product/product-routing.module';
 import { EnterpriseRoutingModule } from './modules/enterprise/enterprise-routing.module';
 import { LoginRoutingModule } from './modules/login/login-routing.module';
+import { FlyerRoutingModule } from './modules/flyer/flyer-routing.module';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { LoginRoutingModule } from './modules/login/login-routing.module';
     EnterpriseRoutingModule,
 
     FlyerModule,
+    FlyerRoutingModule,
   ],
   providers: [
     {
