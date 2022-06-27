@@ -1,1 +1,62 @@
-<p>flyer-dashboard-list works!</p>
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-between mb-2">
+      <h1>Catálogos</h1>
+
+      <button class="btn btn-primary" type="button" (click)="addFlyer()">Adicionar catálogo</button>
+  </div>
+
+  <div class="row">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Pesquisar catálogos">
+      <button class="btn btn-outline-primary" type="button">Pesquisar</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container">
+      <div class="scrollable">
+        <table class="table table-borderless table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Valido até</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Empresa</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flyer of flyers | paginate: { itemsPerPage: itemsPerPage,
+                                                          currentPage: currentPage,
+                                                          totalItems: totalItems
+                                                        }">
+              <td>
+                {{flyer.valid_until | date:'dd/MM/YYYY'}}
+              </td>
+              <td>
+                {{flyer.name}}
+              </td>
+              <td>
+                {{flyer.enterprise.name}}
+              </td>
+              <td>
+                <div class="d-flex justify-content-around align-items-center">
+                  <mat-icon role="button" (click)="editFlyer(flyer)">edit</mat-icon>
+                  <mat-icon role="button" (click)="deleteFlyer(flyer)">delete</mat-icon>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-2 d-flex justify-content-center">
+        <pagination-controls
+        (pageChange)="pageChange($event)"
+        previousLabel="Anterior"
+        nextLabel="Próximo"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+</div>

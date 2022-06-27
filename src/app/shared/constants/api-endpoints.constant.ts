@@ -10,12 +10,26 @@ export const apiEndpoints = {
     refreshToken: `${baseUrl}/auth/refresh`,
     logout: `${baseUrl}/auth/logout`,
   },
+  enterprise: {
+    index: `${baseUrl}/enterprise?page={0}`,
+    show: `${baseUrl}/enterprise/{0}`,
+    store: `${baseUrl}/enterprise`,
+    update: `${baseUrl}/enterprise/{0}`,
+    destroy: `${baseUrl}/enterprise/{0}`,
+  },
   file: {
     index: `${baseUrl}/file`,
     show: `${baseUrl}/file/{0}`,
     store: `${baseUrl}/file`,
     update: `${baseUrl}/file/{0}`,
     destroy: `${baseUrl}/file/{0}`,
+  },
+  flyer: {
+    index: `${baseUrl}/flyer?page={0}`,
+    show: `${baseUrl}/flyer/{0}`,
+    store: `${baseUrl}/flyer`,
+    update: `${baseUrl}/flyer/{0}`,
+    destroy: `${baseUrl}/flyer/{0}`,
   },
   measurementUnit: {
     index: `${baseUrl}/measurement-unit`,
@@ -30,12 +44,5 @@ export const apiEndpoints = {
     store: `${baseUrl}/product`,
     update: `${baseUrl}/product/{0}`,
     destroy: `${baseUrl}/product/{0}`,
-  },
-  enterprise: {
-    index: `${baseUrl}/enterprise?page={0}`,
-    show: `${baseUrl}/enterprise/{0}`,
-    store: `${baseUrl}/enterprise`,
-    update: `${baseUrl}/enterprise/{0}`,
-    destroy: `${baseUrl}/enterprise/{0}`,
   },
 }
