@@ -16,7 +16,7 @@ export class EnterpriseService {
   ) { }
 
   getEnterprises(page: number): Observable<IResponsePageable<Array<Enterprise>>> {
-    const url = Utilities.formatString(apiEndpoints.enterprise.index, page.toString());
+    const url = Utilities.formatString(apiEndpoints.enterprise.indexPaginated, page.toString());
 
     return this.http.get<IResponsePageable<Array<Enterprise>>>(url);
   }

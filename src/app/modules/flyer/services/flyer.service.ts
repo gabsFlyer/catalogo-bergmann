@@ -16,7 +16,7 @@ export class FlyerService {
   ) { }
 
   getFlyers(page: number): Observable<IResponsePageable<Array<Flyer>>> {
-    const url = Utilities.formatString(apiEndpoints.flyer.index, page.toString());
+    const url = Utilities.formatString(apiEndpoints.flyer.indexPaginated, page.toString());
 
     return this.http.get<IResponsePageable<Array<Flyer>>>(url);
   }
