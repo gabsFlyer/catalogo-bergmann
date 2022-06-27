@@ -23,66 +23,11 @@ const routes: Routes = [
     component: FlyerComponent
   },
   {
-    path: 'login',
-    pathMatch: 'full',
-    component: LoginComponent
-  },
-  {
-    path: 'logout',
-    pathMatch: 'full',
-    component: LogoutComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'register',
-    pathMatch: 'full',
-    component: RegisterComponent
-  },
-  {
     path: 'dashboard',
     pathMatch: 'full',
     component: DashboardComponent,
     canActivate: [AuthGuard]
   },
-
-  {
-    path: 'dashboard/products',
-    pathMatch: 'full',
-    component: ProductDashboardListComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'dashboard/products/new',
-    pathMatch: 'full',
-    component: ProductDashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'dashboard/products/edit/:id',
-    pathMatch: 'full',
-    component: ProductDashboardComponent,
-    canActivate: [AuthGuard]
-  },
-
-  {
-    path: 'dashboard/enterprises',
-    pathMatch: 'full',
-    component: EnterpriseDashboardListComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'dashboard/enterprises/new',
-    pathMatch: 'full',
-    component: EnterpriseDashboardComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'dashboard/enterprises/edit/:id',
-    pathMatch: 'full',
-    component: EnterpriseDashboardComponent,
-    canActivate: [AuthGuard]
-  },
-
 
 ];
 
