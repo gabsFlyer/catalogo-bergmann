@@ -64,6 +64,20 @@ export class AuthenticationService {
 
   setToken(token: string) {
     sessionStorage.setItem(environment.sessionStorage.userToken, token);
+    sessionStorage.setItem(environment.sessionStorage.lastTokenRefresh, Date.now().toString());
+  }
+
+  shouldRefreshToken(): boolean {
+    const lastTokenRefresh = sessionStorage.getItem(environment.sessionStorage.lastTokenRefresh);
+    if (!lastTokenRefresh) {
+      return true;
+    }
+
+    const lastTokenRefreshDate = new Date(lastTokenRefresh);
+    const today = new Date();
+    const daysToRefreshToken = environment.application.daysToRefreshToken;
+
+    return (today.getDate() >= lastTokenRefreshDate.getDate() + daysToRefreshToken);
   }
 
   clearToken() {
