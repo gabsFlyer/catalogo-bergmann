@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit {
     this.auth.signIn(this.userMail, this.userPassword)
       .subscribe((accessToken: IAccessToken) => {
         this.auth.setToken(accessToken.access_token);
-
-        location.reload();
       });
   }
 
