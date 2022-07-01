@@ -1,5 +1,5 @@
 import { Enterprise } from "./enterprise.model";
-import { Product } from "./product.model";
+import { FlyerProduct } from "./flyer-product.model";
 
 export class Flyer {
   id!: number;
@@ -7,5 +7,5 @@ export class Flyer {
   valid_until!: string;
 
   enterprise: Enterprise = new Enterprise();
-  products: Array<Product> = new Array();
+  products: Array<FlyerProduct> = new Array();
 }

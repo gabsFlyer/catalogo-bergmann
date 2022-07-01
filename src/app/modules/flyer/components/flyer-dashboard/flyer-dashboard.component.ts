@@ -10,6 +10,7 @@ import { EnterpriseService } from 'src/app/modules/enterprise/services/enterpris
 import { ProductService } from 'src/app/modules/product/services/product.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { FlyerProduct } from 'src/app/shared/models/flyer-product.model';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class FlyerDashboardComponent implements OnInit {
   productsFiltered: Array<Product> = new Array();
   productSearchTerm: string = '';
 
-  productToAdd: Product | undefined;
+  productToAdd: FlyerProduct = new FlyerProduct();
 
   constructor(
     private productService: ProductService,
@@ -122,12 +123,13 @@ export class FlyerDashboardComponent implements OnInit {
 
   onProductSearchTermChange(productSearchTerm: string) {
     this.productSearchTerm = productSearchTerm;
-    this.productToAdd = undefined;
+    this.productToAdd = new FlyerProduct();
     this.filterProducts();
   }
 
   productSelected(event: MatAutocompleteSelectedEvent) {
-    this.productToAdd = event.option.value;
+    const product: Product = event.option.value;
+    this.productToAdd.id = product.id;
   }
 
 }
