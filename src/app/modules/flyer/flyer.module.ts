@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlyerComponent } from './components/flyer/flyer.component';
 import { FlyerDashboardListComponent } from './components/flyer-dashboard-list/flyer-dashboard-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FlyerDashboardComponent } from './components/flyer-dashboard/flyer-dashboard.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 
@@ -13,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [
     FlyerComponent,
     FlyerDashboardListComponent,
+    FlyerDashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +23,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     NgxPaginationModule,
     AngularMaterialModule,
     SharedModule,
+    MatAutocompleteModule,
   ],
   exports: [
     FlyerComponent,

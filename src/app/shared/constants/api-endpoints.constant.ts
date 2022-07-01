@@ -41,6 +41,7 @@ export const apiEndpoints = {
   },
   product: {
     indexPaginated: `${baseUrl}/product?page={0}`,
+    index: `${baseUrl}/product?paginate=false`,
     show: `${baseUrl}/product/{0}`,
     store: `${baseUrl}/product`,
     update: `${baseUrl}/product/{0}`,

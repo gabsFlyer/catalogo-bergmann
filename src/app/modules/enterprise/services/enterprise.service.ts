@@ -21,6 +21,12 @@ export class EnterpriseService {
     return this.http.get<IResponsePageable<Array<Enterprise>>>(url);
   }
 
+  getEnterpriseList(): Observable<Array<Enterprise>> {
+    const url = apiEndpoints.enterprise.index;
+
+    return this.http.get<Array<Enterprise>>(url);
+  }
+
   getEnterprise(id: number): Observable<Enterprise> {
     const url = Utilities.formatString(apiEndpoints.enterprise.show, id.toString());
 

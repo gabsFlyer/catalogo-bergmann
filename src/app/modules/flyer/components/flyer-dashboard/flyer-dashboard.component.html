@@ -1,0 +1,73 @@
+<div class="container-fluid scrollable">
+  <h1>Cadastro de Catálogos</h1>
+
+  <div class="col-sm-8">
+    <div class="row g-3">
+      <div class="form-group">
+        <label for="name" class="form-label">Nome do Catálogo</label>
+        <input id="name" type="text" class="form-control" [(ngModel)]="flyer.name">
+      </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-sm-4 form-group">
+        <label for="description" class="form-label">Empresa</label>
+        <select id="measurement-unit" class="form-select" [(ngModel)]="flyer.enterprise.id">
+          <option *ngFor="let enterprise of enterprises" [ngValue]="enterprise.id">{{enterprise.name}}</option>
+        </select>
+      </div>
+
+      <div class="col-sm-4 form-group">
+        <label for="description" class="form-label">Válido até</label>
+        <input id="description" type="date" class="form-control" [(ngModel)]="flyer.valid_until">
+      </div>
+    </div>
+
+    <div class="row border g-3 mt-1">
+      <div class="col-sm-8">
+        <label for="product-search-term" class="form-label">Pesquisar produto</label>
+        <input
+          id="product-search-term"
+          type="text"
+          class="form-control"
+          [matAutocomplete]="auto"
+          [ngModel]="productSearchTerm"
+          (ngModelChange)="onProductSearchTermChange($event)">
+
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayProductName" (optionSelected)="productSelected($event)">
+          <mat-option *ngFor="let option of productsFiltered" [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+
+
+        <!-- <mat-form-field class="example-full-width" appearance="fill"> -->
+          <!-- <mat-label>Assignee</mat-label>  -->
+          <!-- <input type="text" matInput [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredProducts | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete> -->
+        <!-- </mat-form-field> -->
+
+        <!-- <input class="form-control" [(ngModel)]="productSelected" list="productOptions" placeholder="Selecione um produto">
+        <datalist id="productOptions">
+          <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+        </datalist> -->
+
+      </div>
+    </div>
+
+    <div class="row justify-content-center g-3 mt-1">
+      <div class="col-sm-2">
+        <button class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary" (click)="save()">Salvar</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
