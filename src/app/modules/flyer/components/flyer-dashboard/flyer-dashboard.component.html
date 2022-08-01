@@ -70,10 +70,10 @@
           <tbody>
             <tr *ngFor="let flyerProduct of flyer.products">
               <td>
-                {{getProductName(flyerProduct.id)}}
+                {{flyerProduct.product.name}}
               </td>
               <td>
-                {{getProductValidity(flyerProduct) | date:'dd/MM/YYYY'}}
+                {{flyerProduct.validity | date:'dd/MM/YYYY'}}
               </td>
               <td>
                 <div class="d-flex justify-content-around align-items-center">

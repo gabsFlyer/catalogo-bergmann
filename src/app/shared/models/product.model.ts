@@ -11,6 +11,7 @@ export class Product {
   wholesale_price!: number;
   wholesale_minimum_quantity!: number;
   maximum_percent_discount!: number;
-  measurement_unit: MeasurementUnit = new MeasurementUnit();
+
   file: File = new File();
+  measurement_unit: MeasurementUnit = new MeasurementUnit();
 }

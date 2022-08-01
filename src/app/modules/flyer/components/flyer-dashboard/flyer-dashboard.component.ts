@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { FlyerService } from './../../services/flyer.service';
 import { Component, OnInit } from '@angular/core';
 import { Flyer } from 'src/app/shared/models/flyer.model';
@@ -128,23 +127,22 @@ export class FlyerDashboardComponent implements OnInit {
   }
 
   productSelected(event: MatAutocompleteSelectedEvent) {
-    const product: Product = event.option.value;
-    this.productToAdd.id = product.id;
+    this.productToAdd.product = event.option.value;
   }
 
-  getProductName(productId: number): string {
-    const products = this.products.filter(p => p.id === productId);
-    return products.length > 0 ? products[0].name : '';
-  }
+  // getProductName(productId: number): string {
+  //   const products = this.products.filter(p => p.id === productId);
+  //   return products.length > 0 ? products[0].name : '';
+  // }
 
-  getProductValidity(product: any): string {
-    if (product.pivot) {
-      return product.pivot.validity;
-    }
+  // getProductValidity(product: any): string {
+  //   if (product.pivot) {
+  //     return product.pivot.validity;
+  //   }
 
-    const products = this.flyer.products.filter(p => p.id === product.id);
-    return products.length > 0 ? products[0].validity : '';
-  }
+  //   const products = this.flyer.products.filter(p => p.id === product.id);
+  //   return products.length > 0 ? products[0].validity : '';
+  // }
 
   addProduct(): void {
     this.flyer.products.push(this.productToAdd);
