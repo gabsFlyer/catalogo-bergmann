@@ -132,4 +132,32 @@ export class FlyerDashboardComponent implements OnInit {
     this.productToAdd.id = product.id;
   }
 
+  getProductName(productId: number): string {
+    const products = this.products.filter(p => p.id === productId);
+    return products.length > 0 ? products[0].name : '';
+  }
+
+  getProductValidity(product: any): string {
+    if (product.pivot) {
+      return product.pivot.validity;
+    }
+
+    const products = this.flyer.products.filter(p => p.id === product.id);
+    return products.length > 0 ? products[0].validity : '';
+  }
+
+  addProduct(): void {
+    this.flyer.products.push(this.productToAdd);
+
+    this.productSearchTerm = '';
+    this.productToAdd = new FlyerProduct();
+  }
+
+  deleteProduct(product: FlyerProduct) {
+    const index = this.flyer.products
+      .indexOf(this.flyer.products.filter(p => p.id === product.id)[0]);
+
+    this.flyer.products.splice(index, 1);
+  }
+
 }
