@@ -24,7 +24,6 @@ export class LogoutComponent implements OnInit {
 
   logout() {
     this.auth.clearToken();
-    location.reload();
   }
 
 }

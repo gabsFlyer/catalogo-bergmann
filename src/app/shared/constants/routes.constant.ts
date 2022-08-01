@@ -16,5 +16,10 @@ export const RoutesConstant = {
       edit: 'dashboard/enterprises/edit/{0}',
       new:  'dashboard/enterprises/new'
     },
+    flyers: {
+      list: 'dashboard/flyers',
+      edit: 'dashboard/flyers/edit/{0}',
+      new:  'dashboard/flyers/new'
+    }
   }
 }

@@ -1,0 +1,101 @@
+<div class="container scrollable">
+  <h1>Cadastro de Catálogos</h1>
+
+  <div class="col-sm-8">
+    <div class="row g-3">
+      <div class="form-group">
+        <label for="name" class="form-label">Nome do Catálogo</label>
+        <input id="name" type="text" class="form-control" [(ngModel)]="flyer.name">
+      </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+      <div class="col-sm-4 form-group">
+        <label for="description" class="form-label">Empresa</label>
+        <select id="measurement-unit" class="form-select" [(ngModel)]="flyer.enterprise.id">
+          <option *ngFor="let enterprise of enterprises" [ngValue]="enterprise.id">{{enterprise.name}}</option>
+        </select>
+      </div>
+
+      <div class="col-sm-4 form-group">
+        <label for="description" class="form-label">Válido até</label>
+        <input id="description" type="date" class="form-control" [(ngModel)]="flyer.valid_until">
+      </div>
+    </div>
+
+    <label class="mt-3 mb-3 form-label">Adicionar produtos ao catálogo</label>
+    <div class="row border rounded border-dark  pb-2">
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="product-search-term" class="form-label">Produto</label>
+          <input
+              id="product-search-term"
+              type="text"
+              class="form-control"
+              placeholder="Digite para pesquisar"
+              [matAutocomplete]="auto"
+              [ngModel]="productSearchTerm"
+              (ngModelChange)="onProductSearchTermChange($event)">
+
+          <mat-autocomplete
+              #auto="matAutocomplete"
+              [displayWith]="displayProductName"
+              (optionSelected)="productSelected($event)">
+            <mat-option *ngFor="let option of productsFiltered" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+
+        <div class="col-sm-4">
+          <label for="description" class="form-label">Validade</label>
+          <input id="description" type="date" class="form-control" [(ngModel)]="productToAdd.validity">
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">&nbsp;</label>
+          <button class="form-control btn btn-outline-primary" (click)="addProduct()">Adicionar</button>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <table class="table table-borderless table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Validade</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flyerProduct of flyer.products">
+              <td>
+                {{flyerProduct.product.name}}
+              </td>
+              <td>
+                {{flyerProduct.validity | date:'dd/MM/YYYY'}}
+              </td>
+              <td>
+                <div class="d-flex justify-content-around align-items-center">
+                  <mat-icon role="button" (click)="deleteProduct(flyerProduct)">delete</mat-icon>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center g-3 mt-1">
+      <div class="col-sm-2">
+        <button class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary" (click)="save()">Salvar</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

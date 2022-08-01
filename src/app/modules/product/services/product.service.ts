@@ -16,9 +16,15 @@ export class ProductService {
   ) { }
 
   getProducts(page: number): Observable<IResponsePageable<Array<Product>>> {
-    const url = Utilities.formatString(apiEndpoints.product.index, page.toString());
+    const url = Utilities.formatString(apiEndpoints.product.indexPaginated, page.toString());
 
     return this.http.get<IResponsePageable<Array<Product>>>(url);
+  }
+
+  getProductList() : Observable<Array<Product>> {
+    const url = apiEndpoints.product.index;
+
+    return this.http.get<Array<Product>>(url);
   }
 
   getProduct(id: number): Observable<Product> {

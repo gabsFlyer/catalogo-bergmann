@@ -23,13 +23,18 @@ export class AppComponent implements OnInit {
     this.loadingUser = true;
 
     if (this.auth.userLogged()) {
-      this.auth.refreshToken()
-        .subscribe((accessToken: IAccessToken) => {
-          this.auth.setToken(accessToken.access_token);
-          this.userIsLogged = true;
+      if (this.auth.shouldRefreshToken()) {
+        this.auth.refreshToken()
+          .subscribe((accessToken: IAccessToken) => {
+            this.auth.setToken(accessToken.access_token);
+            this.userIsLogged = true;
 
-          this.checkIfUserIsAdmin();
+            this.checkIfUserIsAdmin();
         });
+      } else {
+        this.userIsLogged = true;
+        this.checkIfUserIsAdmin();
+      }
     }
   }
 
