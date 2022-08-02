@@ -1,7 +1,7 @@
 <div class="full-body d-flex justify-content-center align-items-center">
   <div class="card shadow border rounded p-5" style="width: 25rem;">
     <div class="d-flex justify-content-center pb-5">
-      <h1>gabsFlyer</h1>
+      <h1>{{applicationName}}</h1>
     </div>
 
     <div class="form-group">
@@ -11,7 +11,7 @@
 
     <div class="form-group mt-3">
       <label for="userPassword" class="form-label">Senha</label>
-      <input id="userPassword" type="password" class="form-control" [(ngModel)]="userPassword">
+      <input id="userPassword" type="password" class="form-control" [(ngModel)]="userPassword" (keyup.enter)="login()">
     </div>
 
     <div class="d-flex flex-column">

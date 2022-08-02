@@ -1,0 +1,16 @@
+<div class="form-group">
+  <label for="file" role="button">
+    <img *ngIf="!!imageSource && !uploading" src="{{imageSource}}" class="img-thumbnail thumbnail">
+
+    <div class="upload thumbnail" *ngIf="!imageSource || uploading">
+      <mat-icon [ngClass]="{'loading': uploading}" >cloud_upload</mat-icon>
+    </div>
+  </label>
+
+  <input
+      id="file"
+      type="file"
+      class="form-control"
+      style="display: none"
+      (change)="fileChange($event)">
+</div>

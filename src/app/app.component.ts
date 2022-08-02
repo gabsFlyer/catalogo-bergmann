@@ -1,8 +1,7 @@
 import { User } from './shared/models/user.model';
-import { Router } from '@angular/router';
-import { INavbarOption } from './shared/interfaces/navbar-option.interface';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './shared/services/authentication.service';
+import { IAccessToken } from './shared/interfaces/access-token.interface';
 
 @Component({
   selector: 'app-root',
@@ -11,30 +10,40 @@ import { AuthenticationService } from './shared/services/authentication.service'
 })
 export class AppComponent implements OnInit {
   title: string = 'Catálogo';
+
   userIsLogged: boolean = false;
   userIsAdmin: boolean = false;
-
-  // navbarOptions: Array<INavbarOption> = new Array();
-
+  loadingUser: boolean = false;
 
   constructor (
     private auth: AuthenticationService,
   ) {  }
 
   ngOnInit(): void {
-    this.auth.isLogged.subscribe((logged: boolean) => {
-      this.userIsLogged = logged;
-      if (this.userIsLogged) {
+    this.loadingUser = true;
+
+    if (this.auth.userLogged()) {
+      if (this.auth.shouldRefreshToken()) {
+        this.auth.refreshToken()
+          .subscribe((accessToken: IAccessToken) => {
+            this.auth.setToken(accessToken.access_token);
+            this.userIsLogged = true;
+
+            this.checkIfUserIsAdmin();
+        });
+      } else {
+        this.userIsLogged = true;
         this.checkIfUserIsAdmin();
       }
-    });
-    this.auth.checkStatus();
+    }
   }
 
   checkIfUserIsAdmin() {
     this.auth.getUser()
-    .subscribe((user: User) => {
-      this.userIsAdmin = user.hierarchy > 1;
-    });
+      .subscribe((user: User) => {
+        this.userIsAdmin = user.hierarchy > 1;
+
+        this.loadingUser = false;
+      });
   }
 }

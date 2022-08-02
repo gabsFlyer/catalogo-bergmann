@@ -1,0 +1,38 @@
+.thumbnail {
+  height: auto;
+  width: auto;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.upload {
+  height: 150px;
+  width: 150px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: gray;
+  border-radius: 7px;
+}
+
+.upload mat-icon {
+  transform: scale(2);
+}
+
+.loading {
+  animation: loading-animation 1.5s linear infinite;
+}
+
+@keyframes loading-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

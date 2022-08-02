@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/dashboard">gabsFlyer</a>
+    <a class="navbar-brand" href="/dashboard">{{applicationName}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,18 +13,19 @@
             Cadastros
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="/dashboard/products">Produtos</a></li>
-            <li><a class="dropdown-item" href="#">Empresas</a></li>
-            <li><a class="dropdown-item" href="#">Usuários</a></li>
+            <li><a class="dropdown-item" role="button" (click)="redirectTo(routes.dashboard.products.list)">Produtos</a></li>
+            <li><a class="dropdown-item" role="button" (click)="redirectTo(routes.dashboard.flyers.list)">Catálogos</a></li>
+            <li><a class="dropdown-item" role="button" (click)="redirectTo(routes.dashboard.enterprises.list)">Empresas</a></li>
+            <li><a class="dropdown-item" role="button">Usuários</a></li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Catálogos</a>
+          <a class="nav-link" role="button">Catálogos</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/logout">Sair</a>
+          <a class="nav-link" role="button" (click)="redirectTo(routes.auth.logout)">Sair</a>
         </li>
       </ul>
     </div>

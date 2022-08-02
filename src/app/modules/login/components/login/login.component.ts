@@ -1,5 +1,7 @@
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
 import { IAccessToken } from 'src/app/shared/interfaces/access-token.interface';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
@@ -12,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   userMail: string = '';
   userPassword: string = '';
+  applicationName: string = environment.application.name;
 
   constructor(
     private auth: AuthenticationService,
@@ -19,15 +22,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.isLogged.subscribe((logged: boolean) => {
-      this.router.navigate(['dashboard']);
-    });
-
-    this.auth.checkStatus();
+    if (this.auth.userLogged()) {
+      this.router.navigate([RoutesConstant.dashboard.home]);
+    }
   }
 
   goToRegister() {
-    this.router.navigate(['register']);
+    this.router.navigate([RoutesConstant.auth.register]);
   }
 
   login() {
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
       .subscribe((accessToken: IAccessToken) => {
         this.auth.setToken(accessToken.access_token);
 
-        this.router.navigate(['dashboard']);
+        location.reload();
       });
   }
 

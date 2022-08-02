@@ -1,6 +1,6 @@
 import { User } from './../models/user.model';
 import { IAccessToken } from './../interfaces/access-token.interface';
-import { map, Observable, ReplaySubject } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { SignInModel } from './../models/sign-in.model';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -13,16 +13,12 @@ import { apiEndpoints } from '../constants/api-endpoints.constant';
 })
 export class AuthenticationService {
 
-  private logged = new ReplaySubject<boolean>(1);
-  isLogged = this.logged.asObservable();
-
   constructor(
     private http: HttpClient
   ) { }
 
   signIn(email: string, password: string): Observable<IAccessToken> {
     const url = apiEndpoints.auth.signIn;
-
     const signInModel = new SignInModel(email, password);
 
     return this.http
@@ -38,15 +34,24 @@ export class AuthenticationService {
       .pipe(map(res => res as IAccessToken));
   }
 
+  refreshToken(): Observable<IAccessToken> {
+    const url = apiEndpoints.auth.refreshToken;
+
+    return this.http
+      .post(url, null)
+      .pipe(map(res => res as IAccessToken));
+  }
+
+  logout(): Observable<any> {
+    const url = apiEndpoints.auth.logout;
+
+    return this.http.post(url, null);
+  }
+
   getUser(): Observable<User> {
     const url = apiEndpoints.auth.me;
 
     return this.http.post<User>(url, null);
-  }
-
-  logout() {
-    this.clearToken();
-    this.checkStatus();
   }
 
   userLogged() : boolean {
@@ -59,18 +64,26 @@ export class AuthenticationService {
 
   setToken(token: string) {
     sessionStorage.setItem(environment.sessionStorage.userToken, token);
-    this.logged.next(true);
+    sessionStorage.setItem(environment.sessionStorage.lastTokenRefresh, Date.now().toString());
+  }
+
+  shouldRefreshToken(): boolean {
+    const lastTokenRefresh = sessionStorage.getItem(environment.sessionStorage.lastTokenRefresh);
+    if (!lastTokenRefresh) {
+      return true;
+    }
+
+    const lastTokenRefreshDate = new Date(lastTokenRefresh);
+    const today = new Date();
+    const daysToRefreshToken = environment.application.daysToRefreshToken;
+
+    return (today.getDate() >= lastTokenRefreshDate.getDate() + daysToRefreshToken);
   }
 
   clearToken() {
     sessionStorage.removeItem(environment.sessionStorage.userToken);
+
+    location.reload();
   }
 
-  checkStatus() {
-    if (this.getToken()) {
-      this.logged.next(true);
-    } else {
-      this.logged.next(false);
-    }
-  }
 }
