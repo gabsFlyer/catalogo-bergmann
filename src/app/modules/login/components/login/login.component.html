@@ -11,7 +11,7 @@
 
     <div class="form-group mt-3">
       <label for="userPassword" class="form-label">Senha</label>
-      <input id="userPassword" type="password" class="form-control" [(ngModel)]="userPassword">
+      <input id="userPassword" type="password" class="form-control" [(ngModel)]="userPassword" (keyup.enter)="login()">
     </div>
 
     <div class="d-flex flex-column">
