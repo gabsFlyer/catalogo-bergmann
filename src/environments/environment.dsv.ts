@@ -1,4 +1,4 @@
-const apiUrl = 'https://dev.distribuidorabergmann.com.br';
+const apiUrl = 'https://apidev.distribuidorabergmann.com.br';
 
 export const environment = {
   production: false,
