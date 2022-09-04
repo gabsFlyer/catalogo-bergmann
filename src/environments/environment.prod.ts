@@ -1,7 +1,7 @@
-const apiUrl = 'https://distribuidorabergmann.com.br';
+const apiUrl = 'https://api.distribuidorabergmann.com.br';
 
 export const environment = {
-  production: false,
+  production: true,
   application: {
     name: 'Distribuidora Bergmann',
     daysToRefreshToken: 3,
@@ -11,7 +11,7 @@ export const environment = {
     lastTokenRefresh: 'catalogo-last-token-refresh',
   },
   api: {
-    endpoint: `${apiUrl}/api`,
+    endpoint: `${apiUrl}`,
     images: `${apiUrl}/storage`,
   }
 };
