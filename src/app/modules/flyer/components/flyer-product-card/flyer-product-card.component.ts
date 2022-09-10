@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FlyerProduct } from 'src/app/shared/models/flyer-product.model';
 
 @Component({
   selector: 'app-flyer-product-card',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./flyer-product-card.component.css']
 })
 export class FlyerProductCardComponent implements OnInit {
+
+  @Input() flyerProduct: FlyerProduct = new FlyerProduct();
 
   constructor() { }
 
