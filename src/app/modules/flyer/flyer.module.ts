@@ -8,6 +8,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FlyerDashboardComponent } from './components/flyer-dashboard/flyer-dashboard.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FlyerProductCardComponent } from './components/flyer-product-card/flyer-product-card.component';
 
 
 
@@ -16,6 +17,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     FlyerComponent,
     FlyerDashboardListComponent,
     FlyerDashboardComponent,
+    FlyerProductCardComponent,
   ],
   imports: [
     CommonModule,
