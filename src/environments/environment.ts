@@ -11,7 +11,7 @@ export const environment = {
     lastTokenRefresh: 'catalogo-last-token-refresh',
   },
   api: {
-    endpoint: `${apiUrl}/api`,
+    endpoint: `${apiUrl}`,
     images: `${apiUrl}/storage`
   }
 };
