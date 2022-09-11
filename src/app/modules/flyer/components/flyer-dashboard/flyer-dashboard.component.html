@@ -17,9 +17,14 @@
         </select>
       </div>
 
-      <div class="col-sm-4 form-group">
-        <label for="description" class="form-label">Válido até</label>
-        <input id="description" type="date" class="form-control" [(ngModel)]="flyer.valid_until">
+      <div class="col-sm-3 form-group">
+        <label for="description" class="form-label">Data inicial</label>
+        <input id="description" type="date" class="form-control" [(ngModel)]="flyer.initial_date">
+      </div>
+
+      <div class="col-sm-3 form-group">
+        <label for="description" class="form-label">Data final</label>
+        <input id="description" type="date" class="form-control" [(ngModel)]="flyer.final_date">
       </div>
     </div>
 

@@ -18,7 +18,7 @@
         <table class="table table-borderless table-striped">
           <thead>
             <tr>
-              <th scope="col">Valido até</th>
+              <th scope="col">Data inicial</th>
               <th scope="col">Nome</th>
               <th scope="col">Empresa</th>
               <th scope="col"></th>
@@ -30,7 +30,7 @@
                                                           totalItems: totalItems
                                                         }">
               <td>
-                {{flyer.valid_until | date:'dd/MM/YYYY'}}
+                {{flyer.initial_date | date:'dd/MM/YYYY'}}
               </td>
               <td>
                 {{flyer.name}}
