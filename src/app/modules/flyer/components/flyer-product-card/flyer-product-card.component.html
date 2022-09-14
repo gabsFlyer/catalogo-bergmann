@@ -1,22 +1,29 @@
 <div class="card h-100" style="width: 16rem;">
-  <img src="https://api.distribuidorabergmann.com.br/storage/4ef21972-c2d5-47ea-9921-720e01d063d7.png" class="card-img-top">
+  <img src="{{getProductImage()}}" class="card-img-top">
   <div class="card-body">
     <h2 class="card-title">{{flyerProduct.product.name}}</h2>
     <p class="card-text">{{flyerProduct.product.description}}</p>
-    <span>{{flyerProduct.product.weight}} {{flyerProduct.product.measurement_unit.unit}}</span>
-    <span>Validade: {{flyerProduct.validity}}</span>
+    <span *ngIf="flyerProduct.product.weight && flyerProduct.product.measurement_unit">
+      {{flyerProduct.product.weight}} {{flyerProduct.product.measurement_unit.unit}}
+    </span>
+
 
     <div class="mt-2 d-flex justify-content-between">
       <div class="d-flex flex-column">
-        <span class="fw-bolder fs-5">R$ {{flyerProduct.product.unit_price}}</span>
+        <span class="fw-bolder fs-5">{{flyerProduct.product.unit_price | currency}}</span>
         <span>Varejo</span>
       </div>
 
-      <div class="d-flex flex-column">
-        <span class="fw-bolder fs-3 text-end">R$ {{flyerProduct.product.wholesale_price}}</span>
+      <div class="d-flex flex-column" *ngIf="flyerProduct.product.wholesale_price">
+        <span class="fw-bolder fs-3 text-end">{{flyerProduct.product.wholesale_price | currency}}</span>
         <span class="text-end">A partir de {{flyerProduct.product.wholesale_minimum_quantity}} unidades</span>
       </div>
     </div>
+
+    <div class="mt-2">
+      <span>Validade: {{flyerProduct.validity | date:'dd/MM/yyyy'}}</span>
+    </div>
+
   </div>
 
   <div class="card-footer">
