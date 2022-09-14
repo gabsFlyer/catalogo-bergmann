@@ -1,14 +1,7 @@
 <div class="scrollable">
   <div class="container-p10">
     <div class="row row-cols-1 row-cols-md-4 g-5">
-      <app-flyer-product-card></app-flyer-product-card>
-      <app-flyer-product-card></app-flyer-product-card>
-      <app-flyer-product-card></app-flyer-product-card>
-      <app-flyer-product-card></app-flyer-product-card>
-      <app-flyer-product-card></app-flyer-product-card>
-      <app-flyer-product-card></app-flyer-product-card>
-      <app-flyer-product-card></app-flyer-product-card>
-      <app-flyer-product-card></app-flyer-product-card>
+      <app-flyer-product-card *ngFor="let product of flyer.products" [flyerProduct]="product"></app-flyer-product-card>
     </div>
   </div>
 </div>
