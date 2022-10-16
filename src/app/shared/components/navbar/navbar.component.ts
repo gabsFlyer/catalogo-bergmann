@@ -1,16 +1,18 @@
 import { environment } from 'src/environments/environment';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoutesConstant } from '../../constants/routes.constant';
 
 @Component({
-  selector: 'app-navbar-dashboard',
-  templateUrl: './navbar-dashboard.component.html',
-  styleUrls: ['./navbar-dashboard.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class NavbarDashboardComponent {
+export class NavbarComponent {
   routes = RoutesConstant;
   applicationName: string = environment.application.name;
+
+  @Input() userIsAdmin: boolean = false;
 
   constructor(
     private router: Router,
