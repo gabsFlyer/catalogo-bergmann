@@ -1,8 +1,6 @@
 <main style="overflow: hidden">
 
-  <ng-container *ngIf="userIsLogged">
-    <app-navbar-dashboard *ngIf="userIsAdmin"></app-navbar-dashboard>
-  </ng-container>
+  <app-navbar [userIsAdmin]="userIsAdmin"></app-navbar>
 
   <router-outlet></router-outlet>
 </main>
