@@ -11,6 +11,8 @@ export class FlyerComponent implements OnInit {
 
   flyer = new Flyer();
 
+  flyerDoesntExists: boolean = false;
+
   constructor(
     private flyerService: FlyerService
   ) { }
@@ -24,8 +26,9 @@ export class FlyerComponent implements OnInit {
       .subscribe({
         next: (flyer: Flyer) => {
           this.flyer = flyer;
+          this.flyerDoesntExists = false;
         },
-        error: err => console.warn(err)
+        error: err => this.flyerDoesntExists = true
       })
   }
 
