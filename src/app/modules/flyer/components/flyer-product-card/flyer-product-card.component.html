@@ -32,11 +32,11 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-4">
-        <input type="number" class="form-control" value="0">
+        <input type="number" class="form-control" [(ngModel)]="quantity">
       </div>
 
       <div class="col-8 d-flex justify-content-end">
-        <button type="submit" class="btn btn-secondary">Adicionar</button>
+        <button type="submit" class="btn btn-secondary" (click)="addProductToCart()">Adicionar</button>
       </div>
     </div>
   </div>

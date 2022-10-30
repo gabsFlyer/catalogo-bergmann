@@ -9,6 +9,7 @@ export const environment = {
   sessionStorage: {
     userToken: 'catalogo-user-token',
     lastTokenRefresh: 'catalogo-last-token-refresh',
+    myCartProducts: 'my-cart-products',
   },
   api: {
     endpoint: `${apiUrl}`,
