@@ -1,1 +1,9 @@
-<p>my-cart works!</p>
+<div class="scrollable">
+  <div class="container-fluid">
+    <h1>Meu Carrinho</h1>
+
+    <div>
+      <app-cart-item *ngFor="let product of products" [cartProduct]="product" (removeFlyerProductFromCart)="removeFlyerProductFromCart($event)"></app-cart-item>
+    </div>
+  </div>
+</div>

@@ -16,15 +16,27 @@ export class CartService {
 
   constructor() { }
 
-  addProductToCart(product: FlyerProduct, quantity: number): void {
+  addProductToCart(flyerProduct: FlyerProduct, quantity: number): void {
     const productCart = new CartProduct();
-    productCart.product = product;
+    productCart.flyerProduct = flyerProduct;
     productCart.quantity = quantity;
 
     const cartProducts = this.getCartProducts();
     cartProducts.push(productCart);
 
     this.setCartProducts(cartProducts);
+  }
+
+  removeFlyerProductFromCart(flyerProduct: FlyerProduct): void {
+    const products = this.getCartProducts();
+
+    products.forEach((element, index) => {
+      if (element.flyerProduct.id === flyerProduct.id) {
+        products.splice(index, 1);
+      }
+    });
+
+    this.setCartProducts(products);
   }
 
   getCartProducts(): Array<CartProduct> {

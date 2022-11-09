@@ -18,6 +18,7 @@ import { LoginRoutingModule } from './modules/login/login-routing.module';
 import { FlyerRoutingModule } from './modules/flyer/flyer-routing.module';
 import localePt from '@angular/common/locales/pt';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { CartModule } from './modules/cart/cart.module';
 
 registerLocaleData(localePt);
 
@@ -46,6 +47,8 @@ registerLocaleData(localePt);
 
     FlyerModule,
     FlyerRoutingModule,
+
+    CartModule,
   ],
   providers: [
     {

@@ -6,10 +6,14 @@
   <div class="card-body">
     <h2 class="card-title">{{flyerProduct.product.name}}</h2>
     <p class="card-text">{{flyerProduct.product.description}}</p>
-    <span *ngIf="flyerProduct.product.weight && flyerProduct.product.measurement_unit">
-      {{flyerProduct.product.weight}} {{flyerProduct.product.measurement_unit.unit}}
-    </span>
 
+    <div class="mt-2" *ngIf="!!flyerProduct.product.weight && !!flyerProduct.product.measurement_unit">
+      <span>Peso: {{flyerProduct.product.weight}} {{flyerProduct.product.measurement_unit.unit}}</span>
+    </div>
+
+    <div class="">
+      <span>Validade: {{flyerProduct.validity | date:'dd/MM/yyyy'}}</span>
+    </div>
 
     <div class="mt-2 d-flex justify-content-between">
       <div class="d-flex flex-column">
@@ -21,10 +25,6 @@
         <span class="fw-bolder fs-3 text-end">{{flyerProduct.product.wholesale_price | currency}}</span>
         <span class="text-end">A partir de {{flyerProduct.product.wholesale_minimum_quantity}} unidades</span>
       </div>
-    </div>
-
-    <div class="mt-2">
-      <span>Validade: {{flyerProduct.validity | date:'dd/MM/yyyy'}}</span>
     </div>
 
   </div>
