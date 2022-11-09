@@ -1,8 +1,7 @@
-import { FlyerProduct } from 'src/app/shared/models/flyer-product.model';
-import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartProduct } from 'src/app/shared/models/cart-product.model';
 import { environment } from 'src/environments/environment';
+import { ProductService } from 'src/app/modules/product/services/product.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -25,32 +24,19 @@ export class CartItemComponent {
     return `${baseUrl}/${this.cartProduct.flyerProduct.product.file.file_name}`
   }
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+  ) { }
 
   removeFlyerProduct(): void {
     this.removeFlyerProductFromCart.emit(this.cartProduct.flyerProduct);
   }
 
   getCartItemTotalPrice(): number {
-    return this.cartProduct.quantity * this.getProductPrice();
-  }
+    const product = this.cartProduct.flyerProduct.product;
+    const quantity = this.cartProduct.quantity;
 
-  getProductPrice(): number {
-    if (!this.cartProduct.flyerProduct
-    ||  !this.cartProduct.flyerProduct.product
-    ||  this.cartProduct.quantity <= 0
-    ) {
-      return 0;
-    }
-
-    const wholesaleMinimumQuantity = this.cartProduct.flyerProduct.product.wholesale_minimum_quantity;
-
-    if (wholesaleMinimumQuantity > 0 && this.cartProduct.quantity >= wholesaleMinimumQuantity) {
-      return this.cartProduct.flyerProduct.product.wholesale_price;
-    }
-    else {
-      return this.cartProduct.flyerProduct.product.unit_price;
-    }
+    return this.productService.getProductTotalPrice(product, quantity);
   }
 
 }

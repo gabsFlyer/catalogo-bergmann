@@ -3,7 +3,18 @@
     <h1>Meu Carrinho</h1>
 
     <div>
-      <app-cart-item *ngFor="let product of products" [cartProduct]="product" (removeFlyerProductFromCart)="removeFlyerProductFromCart($event)"></app-cart-item>
+      <app-cart-item *ngFor="let cartProduct of cartProducts" [cartProduct]="cartProduct" (removeFlyerProductFromCart)="removeFlyerProductFromCart($event)"></app-cart-item>
+    </div>
+
+    <div class="row g-3 p-5">
+      <div class="col-sm-9">
+        <button type="button" class="btn btn-success btn-lg" (click)="sendRequestToWhatsapp()">Enviar pedido pelo WhatsApp</button>
+      </div>
+
+      <div class="col-sm-3 d-flex flex-sm-column align-items-end justify-content-center">
+        <span class="me-2 fw-bolder fs-4">Total</span>
+        <span class="me-2 mt-1 fw-bolder fs-2">{{getTotalPrice() | currency}}</span>
+      </div>
     </div>
   </div>
 </div>
