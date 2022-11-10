@@ -1,6 +1,8 @@
 import { formatNumber } from '@angular/common';
 import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/modules/product/services/product.service';
+import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
 import { CartProduct } from 'src/app/shared/models/cart-product.model';
 import { FlyerProduct } from 'src/app/shared/models/flyer-product.model';
 import { CartService } from '../../services/cart.service';
@@ -14,9 +16,14 @@ export class MyCartComponent implements OnInit {
 
   public cartProducts: Array<CartProduct> = [];
 
+  get myCartHasProducts(): boolean {
+    return this.cartProducts && this.cartProducts.length > 0;
+  }
+
   constructor(
     private cartService: CartService,
     private productService: ProductService,
+    private router: Router,
     @Inject(LOCALE_ID) public locale: string,
   ) { }
 
@@ -26,6 +33,10 @@ export class MyCartComponent implements OnInit {
 
   loadCartItems(): void {
     this.cartProducts = this.cartService.getCartProducts()
+  }
+
+  goToHome(): void {
+    this.router.navigate([RoutesConstant.flyer.homeFyer]);
   }
 
   removeFlyerProductFromCart(flyerProduct: FlyerProduct): void {

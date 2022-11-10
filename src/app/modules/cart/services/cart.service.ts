@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartProduct } from 'src/app/shared/models/cart-product.model';
+import { Enterprise } from 'src/app/shared/models/enterprise.model';
 import { FlyerProduct } from 'src/app/shared/models/flyer-product.model';
 import { environment } from 'src/environments/environment';
 
@@ -9,9 +10,11 @@ import { environment } from 'src/environments/environment';
 export class CartService {
 
   get cartProductsStorageKey(): string {
-    const storageKey = sessionStorage.getItem(environment.sessionStorage.myCartProducts);
+    return environment.sessionStorage.myCartProducts || '';
+  }
 
-    return storageKey ? storageKey : '';
+  get enterpriseStorageKey(): string {
+    return environment.sessionStorage.enterprise || '';
   }
 
   constructor() { }
@@ -40,18 +43,22 @@ export class CartService {
   }
 
   getCartProducts(): Array<CartProduct> {
-    const localstorageProducts = localStorage.getItem(this.cartProductsStorageKey)
+    const localstorageProducts = localStorage.getItem(this.cartProductsStorageKey);
 
-    if (localstorageProducts) {
-      return JSON.parse(localstorageProducts);
-    } else {
-      return new Array<CartProduct>();
-    }
+    return localstorageProducts ? JSON.parse(localstorageProducts) : new Array<CartProduct>();
   }
 
   setCartProducts(products: Array<CartProduct>): void {
     localStorage.setItem(this.cartProductsStorageKey, JSON.stringify(products));
+  }
 
-    console.log(this.getCartProducts());
+  getEnterprise(): Enterprise {
+    const enterprise = localStorage.getItem(this.enterpriseStorageKey);
+
+    return enterprise ? JSON.parse(enterprise) : new Enterprise;
+  }
+
+  setEnterprise(enterprise: Enterprise): void {
+    localStorage.setItem(this.enterpriseStorageKey, JSON.stringify(enterprise));
   }
 }

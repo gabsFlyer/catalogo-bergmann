@@ -1,5 +1,11 @@
 <div class="scrollable">
-  <div class="container-fluid">
+  <div *ngIf="!myCartHasProducts" class="container-fluid mt-2">
+    <h1>Você ainda não tem nada no seu carrinho!</h1>
+
+    <span role="button" (click)="goToHome()" class="link-primary">Voltar para o catálogo</span>
+  </div>
+
+  <div *ngIf="myCartHasProducts" class="container-fluid">
     <h1>Meu Carrinho</h1>
 
     <div>
