@@ -7,8 +7,10 @@ export const environment = {
     daysToRefreshToken: 3,
   },
   sessionStorage: {
-    userToken: 'catalogo-user-token',
+    enterprise: 'catalogo-enterprise',
     lastTokenRefresh: 'catalogo-last-token-refresh',
+    myCartProducts: 'catalogo-my-cart-products',
+    userToken: 'catalogo-user-token',
   },
   api: {
     endpoint: `${apiUrl}`,

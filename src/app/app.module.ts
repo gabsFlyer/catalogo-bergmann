@@ -1,6 +1,6 @@
 import { LoginModule } from './modules/login/login.module';
 import { NgModule, DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,6 +17,8 @@ import { EnterpriseRoutingModule } from './modules/enterprise/enterprise-routing
 import { LoginRoutingModule } from './modules/login/login-routing.module';
 import { FlyerRoutingModule } from './modules/flyer/flyer-routing.module';
 import localePt from '@angular/common/locales/pt';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { CartModule } from './modules/cart/cart.module';
 
 registerLocaleData(localePt);
 
@@ -31,6 +33,7 @@ registerLocaleData(localePt);
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
+    MatIconModule,
     SharedModule,
 
     LoginModule,
@@ -44,6 +47,8 @@ registerLocaleData(localePt);
 
     FlyerModule,
     FlyerRoutingModule,
+
+    CartModule,
   ],
   providers: [
     {
@@ -63,4 +68,10 @@ registerLocaleData(localePt);
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer){
+    matIconRegistry.addSvgIconSet(
+      domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
+    );
+  }
+}

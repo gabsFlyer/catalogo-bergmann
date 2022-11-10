@@ -1,0 +1,38 @@
+<div class="container-fuild border mb-2 p-1 bg-light">
+  <div class="row g-3">
+    <div class="col-sm-3 d-flex justify-content-center">
+      <img class="rounded product-image img-thumbnail" src="{{productImage}}" alt="">
+    </div>
+
+    <div class="col-sm-6 d-flex flex-column">
+      <h1>{{cartProduct.flyerProduct.product.name}}</h1>
+      <span>{{cartProduct.flyerProduct.product.description}}</span>
+
+      <div class="mt-2" *ngIf="!!cartProduct.flyerProduct.product.weight && !!cartProduct.flyerProduct.product.measurement_unit">
+        <span>Peso: {{cartProduct.flyerProduct.product.weight}} {{cartProduct.flyerProduct.product.measurement_unit.unit}}</span>
+      </div>
+
+      <div class="mt-2 d-flex justify-content-start">
+        <span class="fw-bolder fs-5">{{cartProduct.flyerProduct.product.unit_price | currency}}</span>
+        <span class="ms-2">Varejo</span>
+      </div>
+
+      <div class="mt-1 d-flex justify-content-start" *ngIf="cartProduct.flyerProduct.product.wholesale_price">
+        <span class="fw-bolder fs-4">{{cartProduct.flyerProduct.product.wholesale_price | currency}}</span>
+        <span class="ms-2 text-end">A partir de {{cartProduct.flyerProduct.product.wholesale_minimum_quantity}} unidades</span>
+      </div>
+
+      <div class="mt-2 d-flex flex-row align-items-center">
+        <span>Quantidade</span>
+        <input type="number" class=" ms-2 form-control product-quantity" [(ngModel)]="cartProduct.quantity">
+        <mat-icon class="ms-2" role="button" (click)="removeFlyerProduct()">delete</mat-icon>
+      </div>
+    </div>
+
+    <div class="col-sm-3 d-flex flex-sm-column align-items-end justify-content-center">
+      <span class="me-2 fw-bolder fs-6">Total</span>
+      <span class="me-2 fw-bolder fs-4">{{getCartItemTotalPrice() | currency}}</span>
+    </div>
+
+  </div>
+</div>

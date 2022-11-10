@@ -50,4 +50,15 @@ export class ProductService {
 
     return this.http.delete(url);
   }
+
+  getProductTotalPrice(product: Product, quantity: number): number {
+    const wholesaleMinimumQuantity = product.wholesale_minimum_quantity;
+
+    if (wholesaleMinimumQuantity > 0 && quantity >= wholesaleMinimumQuantity) {
+      return product.wholesale_price * quantity;
+    }
+    else {
+      return product.unit_price * quantity;
+    }
+  }
 }
