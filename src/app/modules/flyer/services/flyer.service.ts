@@ -15,6 +15,12 @@ export class FlyerService {
     private http: HttpClient,
   ) { }
 
+  getCurrentFlyer(): Observable<Flyer> {
+    const url = apiEndpoints.currentFlyer;
+
+    return this.http.get<Flyer>(url);
+  }
+
   getFlyers(page: number): Observable<IResponsePageable<Array<Flyer>>> {
     const url = Utilities.formatString(apiEndpoints.flyer.indexPaginated, page.toString());
 

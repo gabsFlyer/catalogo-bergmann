@@ -67,7 +67,7 @@ export class ProductDashboardComponent implements OnInit {
   }
 
   cancel() {
-    if (!this.editing() && this.product.file) {
+    if (!this.editing() && this.product.file && this.product.file.id) {
       this.imageService.destroyImage(this.product.file.id)
         .subscribe();
     }

@@ -1,3 +1,11 @@
-<div class="container p-10">
-  <h1>Site em construção!</h1>
+<div class="scrollable">
+  <div class="container mt-5 p10">
+    <div class="m10" *ngIf="flyerDoesntExists">
+      <h1>Não há nenhum catálogo aberto no momento!</h1>
+    </div>
+
+    <div class="d-flex justify-content-center row row-cols-lg-auto g-5">
+      <app-flyer-product-card *ngFor="let product of flyer.products" [flyerProduct]="product"></app-flyer-product-card>
+    </div>
+  </div>
 </div>

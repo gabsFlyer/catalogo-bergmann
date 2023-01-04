@@ -47,4 +47,5 @@ export const apiEndpoints = {
     update: `${baseUrl}/product/{0}`,
     destroy: `${baseUrl}/product/{0}`,
   },
+  currentFlyer: `${baseUrl}/current-flyer`,
 }
