@@ -1,6 +1,7 @@
 import { formatNumber } from '@angular/common';
 import { Component, Inject, OnInit, LOCALE_ID } from '@angular/core';
 import { Router } from '@angular/router';
+import { FlyerService } from 'src/app/modules/flyer/services/flyer.service';
 import { ProductService } from 'src/app/modules/product/services/product.service';
 import { RoutesConstant } from 'src/app/shared/constants/routes.constant';
 import { CartProduct } from 'src/app/shared/models/cart-product.model';
@@ -16,6 +17,8 @@ export class MyCartComponent implements OnInit {
 
   public cartProducts: Array<CartProduct> = [];
 
+  private whatsappNumber: string = '';
+
   get myCartHasProducts(): boolean {
     return this.cartProducts && this.cartProducts.length > 0;
   }
@@ -24,15 +27,24 @@ export class MyCartComponent implements OnInit {
     private cartService: CartService,
     private productService: ProductService,
     private router: Router,
+    private flyerService: FlyerService,
     @Inject(LOCALE_ID) public locale: string,
   ) { }
 
   ngOnInit(): void {
     this.loadCartItems();
+    this.loadWhatsappNumber();
   }
 
   loadCartItems(): void {
     this.cartProducts = this.cartService.getCartProducts()
+  }
+
+  loadWhatsappNumber(): void {
+    const currentFlyer = this.flyerService.getCurrentFlyer()
+      .subscribe(f => {
+        this.whatsappNumber = f.enterprise.whatsapp;
+      })
   }
 
   goToHome(): void {
@@ -58,14 +70,13 @@ export class MyCartComponent implements OnInit {
     return price;
   }
 
-  getWhatsappUrl(): string {
-    const whatsappNumber = "5399011220";
-
-    return `http://wa.me/55${whatsappNumber}?text=${this.createWhatsappMessageText()}`;
-  }
-
   sendRequestToWhatsapp(): void {
     window.open(this.getWhatsappUrl(), '_blank');
+  }
+
+  getWhatsappUrl(): string {
+
+    return `http://wa.me/55${this.whatsappNumber}?text=${this.createWhatsappMessageText()}`;
   }
 
   createWhatsappMessageText(): string {
