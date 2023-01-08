@@ -41,7 +41,7 @@ export class MyCartComponent implements OnInit {
   }
 
   loadWhatsappNumber(): void {
-    const currentFlyer = this.flyerService.getCurrentFlyer()
+    this.flyerService.getCurrentFlyer()
       .subscribe(f => {
         this.whatsappNumber = f.enterprise.whatsapp;
       })
