@@ -4,6 +4,7 @@ import { MeasurementUnit } from "./measurement-unit.model";
 export class Product {
   id!: number;
   name!: string;
+  code!: string;
   description!: string;
   weight!: number;
   purchase_price!: number;
