@@ -14,7 +14,7 @@ export class FlyerProductCardComponent {
 
   @Input() flyerProduct: FlyerProduct = new FlyerProduct();
 
-  quantity: number = 0;
+  quantity: number = 1;
 
   constructor(
     private cartService: CartService,
