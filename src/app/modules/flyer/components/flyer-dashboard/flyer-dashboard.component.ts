@@ -110,13 +110,21 @@ export class FlyerDashboardComponent implements OnInit {
   }
 
   displayProductName(product: Product) {
-    return product && product.name ? product.name : '';
+    if (!product || !product.name) {
+      return '';
+    }
+
+    return product.code ? `${product.code} - ${product.name}` : product.name;
   }
 
   filterProducts(): void {
     this.productsFiltered = this.products.filter(p => {
       const productName = p.name.toLowerCase();
-      return productName.includes(this.productSearchTerm);
+      const productCode = p.code ? p.code : '';
+
+
+      return productName.includes(this.productSearchTerm)
+          || productCode.includes(this.productSearchTerm);
     })
   }
 
