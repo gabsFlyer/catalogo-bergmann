@@ -5,12 +5,12 @@
       <button class="btn btn-primary" type="button" (click)="addProduct()">Adicionar Produto</button>
   </div>
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="Pesquisar produtos">
       <button class="btn btn-outline-primary" type="button">Pesquisar</button>
     </div>
-  </div>
+  </div> -->
 
   <div class="row">
     <div class="container">
@@ -18,6 +18,7 @@
         <table class="table table-borderless table-striped">
           <thead>
             <tr>
+              <th scope="col">Código</th>
               <th scope="col">Nome</th>
               <th scope="col">Descrição</th>
               <th scope="col"></th>
@@ -28,6 +29,9 @@
                                                               currentPage: currentPage,
                                                               totalItems: totalItems
                                                             }">
+              <td>
+                {{product.code}}
+              </td>
               <td>
                 {{product.name}}
               </td>

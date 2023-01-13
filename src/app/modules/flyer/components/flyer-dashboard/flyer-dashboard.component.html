@@ -1,7 +1,7 @@
-<div class="container scrollable">
+<div class="container-fluid scrollable">
   <h1>Cadastro de Catálogos</h1>
 
-  <div class="col-sm-8">
+  <div class="col-sm-8 mb-5">
     <div class="row g-3">
       <div class="form-group">
         <label for="name" class="form-label">Nome do Catálogo</label>
@@ -42,7 +42,7 @@
               [displayWith]="displayProductName"
               (optionSelected)="productSelected($event)">
             <mat-option *ngFor="let option of productsFiltered" [value]="option">
-              {{option.name}}
+              {{displayProductName(option)}}
             </mat-option>
           </mat-autocomplete>
         </div>
@@ -62,6 +62,7 @@
         <table class="table table-borderless table-striped">
           <thead>
             <tr>
+              <th scope="col">Código</th>
               <th scope="col">Produto</th>
               <th scope="col">Validade</th>
               <th scope="col"></th>
@@ -69,6 +70,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let flyerProduct of flyer.products">
+              <td>
+                {{flyerProduct.product.code}}
+              </td>
               <td>
                 {{flyerProduct.product.name}}
               </td>

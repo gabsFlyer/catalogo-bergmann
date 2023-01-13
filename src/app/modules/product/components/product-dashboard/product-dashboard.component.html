@@ -1,16 +1,25 @@
 <div class="container-fluid scrollable">
   <h1>Cadastro de Produtos</h1>
 
-  <div class="row g-3">
+  <div class="row g-3 mb-5">
     <div class="col-sm-3 d-flex justify-content-center align-itens-start mt-5">
       <app-image-upload source="{{productImage}}" (fileUploaded)="fileUploaded($event)"></app-image-upload>
     </div>
 
     <div class="col-sm-8">
       <div class="row g-3">
-        <div class="form-group">
-          <label for="name" class="form-label">Nome do produto</label>
-          <input id="name" type="text" class="form-control" [(ngModel)]="product.name">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="code" class="form-label">Código</label>
+            <input id="code" type="text" class="form-control" [(ngModel)]="product.code">
+          </div>
+        </div>
+
+        <div class="col-md-10">
+          <div class="form-group">
+            <label for="name" class="form-label">Nome do produto</label>
+            <input id="name" type="text" class="form-control" [(ngModel)]="product.name">
+          </div>
         </div>
       </div>
 

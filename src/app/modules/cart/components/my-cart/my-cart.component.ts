@@ -89,7 +89,9 @@ export class MyCartComponent implements OnInit {
       const quantity = cartProduct.quantity;
       const productTotalPrice = this.productService.getProductTotalPrice(product, quantity);
 
-      const productLine = `${quantity}x ${product.name} – R$ ${this.formatValue(productTotalPrice)} ${newLine}`;
+      const productDiscrimination = product.code ? `(${product.code}) ${product.name}` : product.name;
+
+      const productLine = `${quantity}x ${productDiscrimination} – R$ ${this.formatValue(productTotalPrice)} ${newLine}`;
 
       messageText += productLine;
     });
