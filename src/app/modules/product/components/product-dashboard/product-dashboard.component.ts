@@ -103,6 +103,13 @@ export class ProductDashboardComponent implements OnInit {
     }
   }
 
+  rotateImage(): void {
+    this.imageService.rotateImage(this.product.file.id)
+      .subscribe(file => {
+        this.product.file.file_name += '?' + new Date().getTime();
+      })
+  }
+
   fileUploaded(file: File): void {
     this.product.file = file;
   }

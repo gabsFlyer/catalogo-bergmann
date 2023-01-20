@@ -23,6 +23,12 @@ export class ImageUploadService {
     return this.http.post<File>(url, formData);
   }
 
+  rotateImage(id: number): Observable<File> {
+    const url = Utilities.formatString(apiEndpoints.file.rotate, id.toString());
+
+    return this.http.post<File>(url, new FormData());
+  }
+
   destroyImage(id: number): Observable<Object> {
     const url = Utilities.formatString(apiEndpoints.file.destroy, id.toString());
 
