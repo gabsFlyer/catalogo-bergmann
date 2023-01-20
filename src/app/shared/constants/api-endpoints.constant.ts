@@ -24,6 +24,7 @@ export const apiEndpoints = {
     store: `${baseUrl}/file`,
     update: `${baseUrl}/file/{0}`,
     destroy: `${baseUrl}/file/{0}`,
+    rotate: `${baseUrl}/file/rotate/{0}`,
   },
   flyer: {
     indexPaginated: `${baseUrl}/flyer?page={0}`,

@@ -3,7 +3,10 @@
 
   <div class="row g-3 mb-5">
     <div class="col-sm-3 d-flex justify-content-center align-itens-start mt-5">
-      <app-image-upload source="{{productImage}}" (fileUploaded)="fileUploaded($event)"></app-image-upload>
+      <div class="d-flex flex-column align-items-center">
+        <app-image-upload source="{{productImage}}" (fileUploaded)="fileUploaded($event)"></app-image-upload>
+        <mat-icon *ngIf="productImage" role="button" (click)="rotateImage()">rotate_right</mat-icon>
+      </div>
     </div>
 
     <div class="col-sm-8">
