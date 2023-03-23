@@ -61,8 +61,7 @@ export class MyCartComponent implements OnInit {
     let price: number = 0;
 
     this.cartProducts.forEach(cartProduct => {
-      const product = cartProduct.flyerProduct.product;
-      const productTotalPrice: number = this.productService.getProductTotalPrice(product, cartProduct.quantity);
+      const productTotalPrice: number = this.productService.getProductTotalPrice(cartProduct);
 
       price += productTotalPrice;
     });
@@ -87,7 +86,7 @@ export class MyCartComponent implements OnInit {
     this.cartProducts.forEach(cartProduct => {
       const product = cartProduct.flyerProduct.product;
       const quantity = cartProduct.quantity;
-      const productTotalPrice = this.productService.getProductTotalPrice(product, quantity);
+      const productTotalPrice = this.productService.getProductTotalPrice(cartProduct);
 
       const productDiscrimination = product.code ? `(${product.code}) ${product.name}` : product.name;
 
