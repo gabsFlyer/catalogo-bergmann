@@ -33,10 +33,7 @@ export class CartItemComponent {
   }
 
   getCartItemTotalPrice(): number {
-    const product = this.cartProduct.flyerProduct.product;
-    const quantity = this.cartProduct.quantity;
-
-    return this.productService.getProductTotalPrice(product, quantity);
+    return this.productService.getProductTotalPrice(this.cartProduct);
   }
 
 }

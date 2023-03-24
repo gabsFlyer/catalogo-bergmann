@@ -1,3 +1,13 @@
 .image-space {
   height: 35vh;
 }
+
+.image-space img {
+  object-fit: cover;
+  height: 35vh;
+  width: 35vh;
+}
+
+.line-through {
+  text-decoration: line-through;
+}

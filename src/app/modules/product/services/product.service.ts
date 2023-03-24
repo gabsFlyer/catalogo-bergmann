@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from 'src/app/shared/models/product.model';
 import { Utilities } from 'src/app/shared/util/utilities.util';
+import { CartProduct } from 'src/app/shared/models/cart-product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,14 +52,20 @@ export class ProductService {
     return this.http.delete(url);
   }
 
-  getProductTotalPrice(product: Product, quantity: number): number {
+  getProductTotalPrice(cartProduct: CartProduct): number {
+    const product = cartProduct.flyerProduct.product;
+    const quantity = cartProduct.quantity;
+    const offerPrice = cartProduct.flyerProduct.offer_price;
     const wholesaleMinimumQuantity = product.wholesale_minimum_quantity;
 
+    if (offerPrice > 0) {
+      return quantity * offerPrice;
+    }
+
     if (wholesaleMinimumQuantity > 0 && quantity >= wholesaleMinimumQuantity) {
-      return product.wholesale_price * quantity;
+      return quantity * product.wholesale_price;
     }
-    else {
-      return product.unit_price * quantity;
-    }
+
+    return quantity * product.unit_price;
   }
 }

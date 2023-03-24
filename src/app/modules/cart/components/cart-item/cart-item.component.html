@@ -12,14 +12,23 @@
         <span>Peso: {{cartProduct.flyerProduct.product.weight}} {{cartProduct.flyerProduct.product.measurement_unit.unit}}</span>
       </div>
 
-      <div class="mt-2 d-flex justify-content-start">
-        <span class="fw-bolder fs-5">{{cartProduct.flyerProduct.product.unit_price | currency}}</span>
-        <span class="ms-2">Varejo</span>
+      <div *ngIf="!cartProduct.flyerProduct.offer_price">
+        <div class="mt-2 d-flex justify-content-start">
+          <span class="fw-bolder fs-5">{{cartProduct.flyerProduct.product.unit_price | currency}}</span>
+          <span class="ms-2">Varejo</span>
+        </div>
+
+        <div class="mt-1 d-flex justify-content-start" *ngIf="cartProduct.flyerProduct.product.wholesale_price">
+          <span class="fw-bolder fs-4">{{cartProduct.flyerProduct.product.wholesale_price | currency}}</span>
+          <span class="ms-2 text-end">A partir de {{cartProduct.flyerProduct.product.wholesale_minimum_quantity}} unidades</span>
+        </div>
       </div>
 
-      <div class="mt-1 d-flex justify-content-start" *ngIf="cartProduct.flyerProduct.product.wholesale_price">
-        <span class="fw-bolder fs-4">{{cartProduct.flyerProduct.product.wholesale_price | currency}}</span>
-        <span class="ms-2 text-end">A partir de {{cartProduct.flyerProduct.product.wholesale_minimum_quantity}} unidades</span>
+      <div *ngIf="!!cartProduct.flyerProduct.offer_price">
+        <div class="mt-2 d-flex justify-content-start">
+          <span class="fw-bolder fs-4">{{cartProduct.flyerProduct.offer_price | currency}}</span>
+          <span class="ms-2 text-end">Produto em oferta</span>
+        </div>
       </div>
 
       <div class="mt-2 d-flex flex-row align-items-center">

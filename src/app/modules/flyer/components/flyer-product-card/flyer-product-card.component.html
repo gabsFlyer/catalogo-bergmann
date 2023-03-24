@@ -1,29 +1,34 @@
 <div class="card h-100" style="width: 16rem;">
   <div class="image-space d-flex align-items-center">
-    <img src="{{getProductImage()}}" class="card-img-top">
+    <img *ngIf="!!getProductImage()" src="{{getProductImage()}}">
   </div>
 
   <div class="card-body">
     <h2 class="card-title">{{flyerProduct.product.name}}</h2>
     <p class="card-text">{{flyerProduct.product.description}}</p>
 
-    <div class="mt-2" *ngIf="!!flyerProduct.product.weight && !!flyerProduct.product.measurement_unit">
+    <div class="mt-1" *ngIf="!!flyerProduct.product.weight && !!flyerProduct.product.measurement_unit">
       <span>Peso: {{flyerProduct.product.weight}} {{flyerProduct.product.measurement_unit.unit}}</span>
     </div>
 
-    <div class="">
+    <div class="mt-1" *ngIf="!!flyerProduct.validity">
       <span>Validade: {{flyerProduct.validity | date:'dd/MM/yyyy'}}</span>
     </div>
 
-    <div class="mt-2 d-flex justify-content-between">
+    <div class="mt-3 d-flex justify-content-between">
       <div class="d-flex flex-column">
-        <span class="fw-bolder fs-5">{{flyerProduct.product.unit_price | currency}}</span>
-        <span>Varejo</span>
+        <span class="fw-bolder fs-5" [ngClass]="{'line-through': !!flyerProduct.offer_price}">{{flyerProduct.product.unit_price | currency}}</span>
+        <span *ngIf="!flyerProduct.offer_price">Varejo</span>
       </div>
 
-      <div class="d-flex flex-column" *ngIf="flyerProduct.product.wholesale_price">
+      <div class="d-flex flex-column" *ngIf="!flyerProduct.offer_price && flyerProduct.product.wholesale_price">
         <span class="fw-bolder fs-3 text-end">{{flyerProduct.product.wholesale_price | currency}}</span>
         <span class="text-end">A partir de {{flyerProduct.product.wholesale_minimum_quantity}} unidades</span>
+      </div>
+
+      <div class="d-flex flex-column" *ngIf="!!flyerProduct.offer_price">
+        <span class="fw-bolder fs-3 text-end">{{flyerProduct.offer_price | currency}}</span>
+        <span class="text-end">Produto em oferta</span>
       </div>
     </div>
 
