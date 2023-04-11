@@ -55,7 +55,7 @@ jobs:
           push: 'origin ${{env.RELEASE_BRANCH}} --set-upstream --force'
 
       - name: ⬇️ Download artifact
-        uses: actions/download-artifact@v3.0.0
+        uses: actions/download-artifact@v3.0.2
         with:
           name: dist
           path: './'
